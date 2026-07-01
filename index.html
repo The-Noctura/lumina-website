@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumina Creative Studio — Beranda</title>
+    <meta
+      name="description"
+      content="Lumina Creative Studio — agensi kreatif digital berbasis di Jakarta sejak 2018, memadukan strategi, desain, dan teknologi untuk pertumbuhan bisnis Anda."
+    />
+
+    <!-- Open Graph untuk share sosial media -->
+    <meta property="og:title" content="Lumina Creative Studio" />
+    <meta
+      property="og:description"
+      content="Agensi kreatif digital berbasis di Jakarta sejak 2018."
+    />
+    <meta property="og:image" content="assets/images/og-cover.jpg" />
+
+    <link rel="icon" href="assets/images/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/pages/home.css" />
+  </head>
+  <body>
+    <!-- ============================================================
+       1. NAVIGATION BAR
+       ============================================================ -->
+    <header class="navbar" id="navbar">
+      <div class="container navbar__inner">
+        <a href="index.html" class="navbar__logo">
+          <img
+            src="assets/images/logo/logo.svg"
+            alt="Lumina Creative Studio"
+            width="140"
+            height="32"
+          />
+        </a>
+
+        <button
+          class="navbar__toggle"
+          id="navToggle"
+          aria-label="Buka menu navigasi"
+          aria-expanded="false"
+          aria-controls="navMenu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="navbar__menu" id="navMenu">
+          <a href="index.html" class="navbar__link navbar__link--active"
+            >Beranda</a
+          >
+          <a href="tentang.html" class="navbar__link">Tentang Kami</a>
+          <a href="layanan.html" class="navbar__link">Layanan</a>
+          <a href="portofolio.html" class="navbar__link">Portofolio & Klien</a>
+          <a href="tim.html" class="navbar__link">Tim Kami</a>
+          <a href="kontak.html" class="navbar__link">Kontak</a>
+          <a href="kontak.html" class="navbar__cta btn btn--primary"
+            >Konsultasi Gratis</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============================================================
+         2. HERO SECTION
+         ============================================================ -->
+      <section class="hero">
+        <div class="container hero__inner">
+          <div class="hero__content" data-reveal>
+            <h1 class="hero__headline">
+              Membantu Brand Bertransformasi di Era Digital
+            </h1>
+            <p class="hero__subheadline">
+              Lumina Creative Studio — agensi kreatif digital berbasis di
+              Jakarta sejak 2018, memadukan strategi, desain, dan teknologi
+              untuk pertumbuhan bisnis Anda.
+            </p>
+            <div class="hero__actions">
+              <a href="layanan.html" class="btn btn--primary"
+                >Lihat Layanan Kami</a
+              >
+              <a href="kontak.html" class="btn btn--secondary"
+                >Jadwalkan Diskusi</a
+              >
+            </div>
+          </div>
+          <div class="hero__visual" data-reveal>
+            <img
+              src="https://placehold.co/640x520/1C1B19/FAF9F6?text=Tim+Lumina+Bekerja"
+              alt="Tim Lumina Creative Studio sedang bekerja dan berdiskusi"
+              width="640"
+              height="520"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         3. STATISTIK SINGKAT (TRUST BAR)
+         ============================================================ -->
+      <section class="trust-bar">
+        <div class="container trust-bar__grid">
+          <div class="stat-counter" data-reveal>
+            <span class="stat-counter__number" data-count="2018" data-suffix=""
+              >0</span
+            >
+            <span class="stat-counter__label">Tahun Berdiri</span>
+          </div>
+          <div class="stat-counter" data-reveal>
+            <span
+              class="stat-counter__number"
+              data-count="24"
+              data-suffix=" Orang"
+              >0</span
+            >
+            <span class="stat-counter__label">Anggota Tim</span>
+          </div>
+          <div class="stat-counter" data-reveal>
+            <span class="stat-counter__number" data-count="150" data-suffix="+"
+              >0</span
+            >
+            <span class="stat-counter__label">Proyek Selesai</span>
+          </div>
+          <div class="stat-counter" data-reveal>
+            <span class="stat-counter__number" data-count="4.8" data-suffix="/5"
+              >0</span
+            >
+            <span class="stat-counter__label">Rating Kepuasan Klien</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         4. PREVIEW LAYANAN (3-4 LAYANAN UNGGULAN)
+         ============================================================ -->
+      <section class="services-preview">
+        <div class="container">
+          <div class="section-header section-header--center" data-reveal>
+            <span class="section-header__eyebrow">Layanan</span>
+            <h2 class="section-header__title">Apa yang Kami Kerjakan</h2>
+          </div>
+
+          <div class="grid services-preview__grid">
+            <div class="card card--service col-span-3" data-reveal>
+              <!-- Brand Identity -->
+              <div class="card__icon" aria-hidden="true">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="13.5" cy="6.5" r=".5"></circle>
+                  <circle cx="17.5" cy="10.5" r=".5"></circle>
+                  <circle cx="8.5" cy="7.5" r=".5"></circle>
+                  <circle cx="6.5" cy="12.5" r=".5"></circle>
+                  <path
+                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="card__title">Brand Identity</h3>
+              <p class="card__desc">
+                Logo, brand guideline, dan visual identity
+              </p>
+            </div>
+            <div class="card card--service col-span-3" data-reveal>
+              <div class="card__icon" aria-hidden="true">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+
+              <h3 class="card__title">Web & App Design</h3>
+              <p class="card__desc">
+                UI/UX design untuk website dan aplikasi mobile
+              </p>
+            </div>
+            <div class="card card--service col-span-3" data-reveal>
+              <div class="card__icon" aria-hidden="true">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+              </div>
+              <h3 class="card__title">Digital Marketing</h3>
+              <p class="card__desc">
+                Strategi SEO, SEM, dan social media marketing
+              </p>
+            </div>
+            <div class="card card--service col-span-3" data-reveal>
+              <div class="card__icon" aria-hidden="true">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <h3 class="card__title">Web Development</h3>
+              <p class="card__desc">Pembuatan website custom dan e-commerce</p>
+            </div>
+          </div>
+
+          <div class="services-preview__cta" data-reveal>
+            <a href="layanan.html" class="btn btn--secondary"
+              >Lihat Semua Layanan →</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         5. PREVIEW KLIEN (LOGO STRIP / MARQUEE)
+         ============================================================ -->
+      <section class="clients-strip">
+        <div class="container">
+          <p class="clients-strip__label" data-reveal>
+            Dipercaya oleh brand dari berbagai industri
+          </p>
+        </div>
+        <div class="marquee" data-reveal>
+          <div class="marquee__track">
+            <span class="marquee__item">Kopi Senja Nusantara</span>
+            <span class="marquee__item">Ruang Belajar Digital</span>
+            <span class="marquee__item">Sehat.id</span>
+            <span class="marquee__item">Nara Fashion House</span>
+            <span class="marquee__item">TechNova Indonesia</span>
+            <!-- duplikasi untuk loop marquee tanpa jeda -->
+            <span class="marquee__item" aria-hidden="true"
+              >Kopi Senja Nusantara</span
+            >
+            <span class="marquee__item" aria-hidden="true"
+              >Ruang Belajar Digital</span
+            >
+            <span class="marquee__item" aria-hidden="true">Sehat.id</span>
+            <span class="marquee__item" aria-hidden="true"
+              >Nara Fashion House</span
+            >
+            <span class="marquee__item" aria-hidden="true"
+              >TechNova Indonesia</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         6. CUPLIKAN TENTANG KAMI
+         ============================================================ -->
+      <section class="about-snippet">
+        <div class="container about-snippet__inner">
+          <div class="about-snippet__visual" data-reveal>
+            <img
+              src="https://placehold.co/560x420/F2D9CE/1C1B19?text=Kantor+%26+Tim+Lumina"
+              alt="Foto tim dan kantor Lumina Creative Studio"
+              width="560"
+              height="420"
+              loading="lazy"
+            />
+          </div>
+          <div class="about-snippet__content" data-reveal>
+            <span class="section-header__eyebrow">Tentang Kami</span>
+            <p class="about-snippet__text">
+              Menjadi mitra digital terpercaya bagi brand-brand yang ingin
+              tumbuh secara autentik di era digital.
+            </p>
+            <a href="tentang.html" class="btn btn--secondary"
+              >Kenali Kami Lebih Jauh →</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         7. TESTIMONI SINGKAT
+         ============================================================ -->
+      <section class="testimonials">
+        <div class="container">
+          <div class="section-header section-header--center" data-reveal>
+            <span class="section-header__eyebrow">Testimoni</span>
+            <h2 class="section-header__title">Kata Mereka Tentang Lumina</h2>
+          </div>
+
+          <div class="testimonials__grid">
+            <blockquote class="testimonial" data-reveal>
+              <p class="testimonial__quote">
+                "Lumina memahami kebutuhan brand kami dan menerjemahkannya
+                menjadi strategi digital yang benar-benar berdampak pada
+                pertumbuhan bisnis."
+              </p>
+              <footer class="testimonial__author">
+                <img
+                  src="https://placehold.co/56x56/1C1B19/FAF9F6?text=NF"
+                  alt="Perwakilan Nara Fashion House"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                />
+                <div>
+                  <cite class="testimonial__name">Perwakilan Klien</cite>
+                  <span class="testimonial__role">Nara Fashion House</span>
+                </div>
+              </footer>
+            </blockquote>
+
+            <blockquote class="testimonial" data-reveal>
+              <p class="testimonial__quote">
+                "Proses kerja yang kolaboratif dan berbasis data membuat kami
+                yakin setiap keputusan kreatif punya alasan yang jelas."
+              </p>
+              <footer class="testimonial__author">
+                <img
+                  src="https://placehold.co/56x56/1C1B19/FAF9F6?text=TN"
+                  alt="Perwakilan TechNova Indonesia"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                />
+                <div>
+                  <cite class="testimonial__name">Perwakilan Klien</cite>
+                  <span class="testimonial__role">TechNova Indonesia</span>
+                </div>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         8. CALL-TO-ACTION PENUTUP
+         ============================================================ -->
+      <section class="cta-banner">
+        <div class="container cta-banner__inner" data-reveal>
+          <h2 class="cta-banner__headline">Siap Bertumbuh Bersama Kami?</h2>
+          <a href="kontak.html" class="btn btn--primary"
+            >Hubungi Kami Sekarang</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+       9. FOOTER
+       ============================================================ -->
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <img
+            src="assets/images/logo/logo-white.svg"
+            alt="Lumina Creative Studio"
+            width="140"
+          />
+          <p>Agensi kreatif digital berbasis di Jakarta sejak 2018.</p>
+        </div>
+
+        <div class="footer__links">
+          <h4>Navigasi</h4>
+          <a href="index.html">Beranda</a>
+          <a href="tentang.html">Tentang Kami</a>
+          <a href="layanan.html">Layanan</a>
+          <a href="portofolio.html">Portofolio & Klien</a>
+          <a href="tim.html">Tim Kami</a>
+          <a href="kontak.html">Kontak</a>
+        </div>
+
+        <div class="footer__contact">
+          <h4>Kontak</h4>
+          <p>Jl. Kemang Raya No. 88, Jakarta Selatan, Indonesia</p>
+          <p>
+            <a href="mailto:hello@luminacreative.id">hello@luminacreative.id</a>
+          </p>
+          <p><a href="tel:+622155512345">+62 21 5551 2345</a></p>
+        </div>
+
+        <div class="footer__social">
+          <h4>Ikuti Kami</h4>
+          <a
+            href="https://instagram.com/luminacreative.id"
+            target="_blank"
+            rel="noopener"
+            >Instagram</a
+          >
+        </div>
+      </div>
+
+      <div class="footer__bottom container">
+        <p>
+          &copy; <span id="year"></span> Lumina Creative Studio. Seluruh hak
+          cipta dilindungi.
+        </p>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/animations.js" defer></script>
+  </body>
+</html>

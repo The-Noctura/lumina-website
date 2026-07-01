@@ -1,0 +1,104 @@
+/* ==========================================================================
+   LAYOUT.CSS
+   Container, Grid System (CSS Grid native, tanpa framework)
+   Referensi: 07-spesifikasi-teknis.md — bagian 2.5 Layout System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CONTAINER
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+/* --------------------------------------------------------------------------
+   GRID SYSTEM
+   12 kolom, gap dari design token --space-4
+   -------------------------------------------------------------------------- */
+.grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(12, 1fr);
+}
+
+/* Util minimal untuk span kolom, dibuat manual (bukan dari framework utility) */
+.col-span-1  { grid-column: span 1; }
+.col-span-2  { grid-column: span 2; }
+.col-span-3  { grid-column: span 3; }
+.col-span-4  { grid-column: span 4; }
+.col-span-5  { grid-column: span 5; }
+.col-span-6  { grid-column: span 6; }
+.col-span-7  { grid-column: span 7; }
+.col-span-8  { grid-column: span 8; }
+.col-span-9  { grid-column: span 9; }
+.col-span-10 { grid-column: span 10; }
+.col-span-11 { grid-column: span 11; }
+.col-span-12 { grid-column: span 12; }
+
+/* Stack di mobile (< 900px) — sesuai contoh spesifikasi 2.5 */
+@media (max-width: 899px) {
+  .col-span-4, .col-span-6 { grid-column: span 12; }
+}
+
+/* --------------------------------------------------------------------------
+   BREAKPOINTS RESPONSIF (referensi — mobile-first)
+   Base styles = mobile (< 600px)
+   min-width: 600px  → Tablet kecil
+   min-width: 900px  → Tablet besar / small desktop
+   min-width: 1200px → Desktop
+   min-width: 1440px → Large desktop
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   SECTION SPACING
+   Jarak vertikal antar section, konsisten di seluruh halaman
+   -------------------------------------------------------------------------- */
+.section {
+  padding-block: var(--space-6);
+}
+
+@media (min-width: 900px) {
+  .section {
+    padding-block: var(--space-7);
+  }
+}
+
+.section--tight {
+  padding-block: var(--space-4);
+}
+
+@media (min-width: 900px) {
+  .section--tight {
+    padding-block: var(--space-5);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FLEX UTILITIES DASAR (native, minimal — untuk kebutuhan komponen)
+   -------------------------------------------------------------------------- */
+.flex {
+  display: flex;
+}
+
+.flex--between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex--center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex--wrap {
+  flex-wrap: wrap;
+}
+
+.flex--gap-1 { gap: var(--space-1); }
+.flex--gap-2 { gap: var(--space-2); }
+.flex--gap-3 { gap: var(--space-3); }

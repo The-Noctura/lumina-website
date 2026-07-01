@@ -1,0 +1,107 @@
+/* ==========================================================================
+   RESET.CSS
+   Modern CSS reset — pendekatan wajar untuk production, bukan reset agresif.
+   Referensi gaya: Josh Comeau's Custom CSS Reset / Andy Bell Modern Reset.
+   ========================================================================== */
+
+/* 1. Gunakan border-box untuk semua elemen agar perhitungan ukuran konsisten */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Hilangkan margin & padding bawaan browser pada semua elemen */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Pastikan body mengisi minimal tinggi viewport & rendering font rapi */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeSpeed;
+}
+
+/* 4. Elemen media tidak melebihi kontainernya & tidak inline-gap */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 5. Elemen form mewarisi tipografi dari parent, bukan default browser */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* 6. Hilangkan list style bawaan, tapi ul/ol semantik (mis. konten artikel)
+      tetap bisa mengembalikannya lewat class jika diperlukan */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 7. Link tidak mewarisi warna/underline paksa dari user-agent stylesheet;
+      styling final tetap diatur eksplisit di base.css / components.css */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 8. Rapikan elemen tabel */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 9. Hindari word overflow pada elemen teks panjang (URL, teks tanpa spasi) */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 10. Elemen yang di-hide via atribut tetap konsisten di semua browser */
+[hidden] {
+  display: none !important;
+}
+
+/* 11. Tombol & elemen interaktif custom tetap terlihat sebagai elemen klik */
+button,
+[role="button"] {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* 12. Reset default fieldset/legend yang sering mengganggu layout form */
+fieldset {
+  border: none;
+}
+
+/* 13. Root stacking context agar elemen dengan posisi fixed/sticky konsisten
+       (berguna untuk navbar) */
+#root,
+#__next {
+  isolation: isolate;
+}

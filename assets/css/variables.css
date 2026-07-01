@@ -1,0 +1,55 @@
+/* ==========================================================================
+   VARIABLES.CSS
+   Design Tokens — Lumina Creative Studio
+   Sumber: 07-spesifikasi-teknis.md, bagian 2.3 (Design Tokens)
+   Semua nilai desain terpusat di sini sebagai CSS Custom Properties,
+   supaya tidak ada magic number tersebar di file lain.
+
+   Catatan: nilai warna di bawah adalah usulan awal (tema terracotta/kreatif
+   hangat). Sesuaikan lagi saat tahap desain visual jika ada brand guideline
+   final dari klien.
+   ========================================================================== */
+
+:root {
+  /* === COLOR === */
+  --color-bg: #FAF9F6;
+  --color-surface: #FFFFFF;
+  --color-ink: #1C1B19;
+  --color-ink-muted: #5C594F;
+  --color-primary: #1C1B19;      /* aksen gelap utama */
+  --color-accent: #D6572E;        /* aksen terracotta/oranye kreatif */
+  --color-accent-soft: #F2D9CE;
+  --color-border: #E6E2D8;
+
+  /* === TYPOGRAPHY === */
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --fs-h1: clamp(2.5rem, 5vw, 4.5rem);
+  --fs-h2: clamp(2rem, 4vw, 3rem);
+  --fs-h3: clamp(1.5rem, 3vw, 2rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+
+  /* === SPACING (8px base scale) === */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
+  --space-8: 8rem;
+
+  /* === LAYOUT === */
+  --container-max: 1200px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* === TRANSITION === */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+}

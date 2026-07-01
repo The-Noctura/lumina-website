@@ -1,0 +1,473 @@
+/* ==========================================================================
+   COMPONENTS.CSS
+   Komponen reusable: Navbar, Footer, Button, Card, Section Header
+   Referensi: 07-spesifikasi-teknis.md — bagian 3.2, 3.3, 4
+   Metodologi: BEM (Block Element Modifier)
+   ========================================================================== */
+
+/* ==========================================================================
+   1. NAVBAR
+   ========================================================================== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--duration-base) var(--ease),
+              border-color var(--duration-base) var(--ease),
+              box-shadow var(--duration-base) var(--ease);
+}
+
+/* State: navbar berubah style saat discroll (dikendalikan main.js) */
+.navbar--scrolled {
+  border-bottom-color: var(--color-border);
+  box-shadow: 0 2px 12px rgba(28, 27, 25, 0.06);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-2);
+  min-height: 72px;
+}
+
+.navbar__logo {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.navbar__logo img {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
+/* Hamburger toggle button — hanya tampil di mobile/tablet (< 900px) */
+.navbar__toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 110;
+}
+
+.navbar__toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-ink);
+  border-radius: 2px;
+  transition: transform var(--duration-base) var(--ease),
+              opacity var(--duration-base) var(--ease);
+}
+
+/* Animasi hamburger → X saat menu terbuka */
+.navbar__toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar__toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.navbar__toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Menu navigasi */
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.navbar__link {
+  position: relative;
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  text-decoration: none;
+  padding-block: var(--space-1);
+  transition: color var(--duration-fast) var(--ease);
+}
+
+.navbar__link:hover,
+.navbar__link:focus-visible {
+  color: var(--color-ink);
+}
+
+.navbar__link--active {
+  color: var(--color-ink);
+}
+
+.navbar__link--active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background-color: var(--color-accent);
+  border-radius: 2px;
+}
+
+.navbar__cta {
+  margin-left: var(--space-1);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Navbar — Responsif (mobile-first)
+   Base (mobile, < 900px): menu disembunyikan, jadi off-canvas/dropdown
+   min-width 900px: menu tampil horizontal seperti biasa
+   -------------------------------------------------------------------------- */
+@media (max-width: 899px) {
+  .navbar__toggle {
+    display: flex;
+  }
+
+  .navbar__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 8px 16px rgba(28, 27, 25, 0.08);
+
+    /* Tersembunyi secara default di mobile */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height var(--duration-base) var(--ease),
+                opacity var(--duration-base) var(--ease),
+                visibility var(--duration-base) var(--ease);
+  }
+
+  /* Class ditambahkan via JS (main.js) saat toggle diklik */
+  .navbar__menu--open {
+    max-height: 100vh;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .navbar__link {
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .navbar__link--active::after {
+    display: none;
+  }
+
+  .navbar__cta {
+    margin: var(--space-2) var(--space-3);
+    justify-content: center;
+  }
+}
+
+@media (min-width: 900px) {
+  .navbar__toggle {
+    display: none;
+  }
+
+  .navbar__menu {
+    position: static;
+    flex-direction: row;
+    max-height: none;
+    opacity: 1;
+    visibility: visible;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+/* ==========================================================================
+   2. FOOTER
+   ========================================================================== */
+.footer {
+  background-color: var(--color-ink);
+  color: var(--color-bg);
+  padding-block: var(--space-6) var(--space-3);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-5);
+  padding-bottom: var(--space-5);
+}
+
+.footer__brand {
+  grid-column: span 12;
+}
+
+.footer__brand img {
+  height: 28px;
+  width: auto;
+  margin-bottom: var(--space-2);
+}
+
+.footer__brand p {
+  color: rgba(250, 249, 246, 0.65);
+  font-size: var(--fs-small);
+  max-width: 32ch;
+}
+
+.footer__links,
+.footer__contact,
+.footer__social {
+  grid-column: span 6;
+}
+
+.footer__links h4,
+.footer__contact h4,
+.footer__social h4 {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-bg);
+  margin-bottom: var(--space-2);
+}
+
+.footer__links a,
+.footer__contact a,
+.footer__social a {
+  display: block;
+  color: rgba(250, 249, 246, 0.65);
+  text-decoration: none;
+  font-size: var(--fs-small);
+  padding-block: 0.35rem;
+  transition: color var(--duration-fast) var(--ease);
+}
+
+.footer__links a:hover,
+.footer__contact a:hover,
+.footer__social a:hover {
+  color: var(--color-bg);
+}
+
+.footer__contact p {
+  color: rgba(250, 249, 246, 0.65);
+  font-size: var(--fs-small);
+  margin: 0;
+  padding-block: 0.35rem;
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(250, 249, 246, 0.15);
+  padding-top: var(--space-3);
+}
+
+.footer__bottom p {
+  font-size: var(--fs-small);
+  color: rgba(250, 249, 246, 0.5);
+  margin: 0;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Footer — Responsif
+   -------------------------------------------------------------------------- */
+@media (min-width: 600px) {
+  .footer__links,
+  .footer__contact,
+  .footer__social {
+    grid-column: span 4;
+  }
+}
+
+@media (min-width: 900px) {
+  .footer__brand {
+    grid-column: span 4;
+  }
+
+  .footer__links {
+    grid-column: span 3;
+  }
+
+  .footer__contact {
+    grid-column: span 3;
+  }
+
+  .footer__social {
+    grid-column: span 2;
+  }
+}
+
+/* ==========================================================================
+   3. BUTTON
+   Baseline disalin dari 07-spesifikasi-teknis.md bagian 4 (tidak diubah
+   struktur class-nya), ditambah state focus-visible untuk aksesibilitas.
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-body);
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease),
+              transform var(--duration-fast) var(--ease);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.btn--primary {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+.btn--primary:hover {
+  background-color: #b8481f;
+  transform: translateY(-2px);
+}
+
+.btn--secondary {
+  background-color: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-border);
+}
+.btn--secondary:hover {
+  background-color: var(--color-surface);
+}
+
+/* Varian untuk tombol di atas latar gelap (mis. footer/hero gelap) */
+.btn--secondary-inverse {
+  background-color: transparent;
+  color: var(--color-bg);
+  border-color: rgba(250, 249, 246, 0.3);
+}
+.btn--secondary-inverse:hover {
+  background-color: rgba(250, 249, 246, 0.08);
+}
+
+/* ==========================================================================
+   4. SECTION HEADER
+   Dipakai di semua halaman: eyebrow + judul + deskripsi
+   ========================================================================== */
+.section-header {
+  max-width: 640px;
+  margin-bottom: var(--space-5);
+}
+
+.section-header--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-header__eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-1);
+}
+
+.section-header__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  line-height: 1.15;
+  color: var(--color-ink);
+  margin-bottom: var(--space-2);
+}
+
+.section-header__desc {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--color-ink-muted);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   5. CARD (base)
+   Siap dipakai turunan: .card--service, .card--team, .card--portfolio
+   ========================================================================== */
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  transition: transform var(--duration-base) var(--ease),
+              box-shadow var(--duration-base) var(--ease),
+              border-color var(--duration-base) var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(28, 27, 25, 0.08);
+  border-color: var(--color-border);
+}
+
+.card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--color-ink);
+  margin-bottom: var(--space-1);
+}
+
+.card__desc {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--color-ink-muted);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: var(--space-2);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.card__link:hover {
+  color: var(--color-accent);
+}
