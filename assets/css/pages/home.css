@@ -194,6 +194,21 @@
   margin-top: var(--space-5);
 }
 
+/* Perbaikan responsif: layout.css resmi hanya stack col-span-4/6 di mobile,
+   col-span-3 tidak didaftarkan sehingga card layanan tetap sempit (1/4 lebar)
+   di layar kecil. Override di-scope ke section ini saja. */
+@media (max-width: 599px) {
+  .services-preview__grid .col-span-3 {
+    grid-column: span 12;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .services-preview__grid .col-span-3 {
+    grid-column: span 6;
+  }
+}
+
 .services-preview__cta {
   display: flex;
   justify-content: center;
