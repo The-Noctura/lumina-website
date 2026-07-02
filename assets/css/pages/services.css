@@ -76,8 +76,18 @@
 }
 
 .accordion__icon {
-  font-size: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+.accordion__icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 .accordion__title-group {
@@ -99,7 +109,7 @@
 }
 
 .accordion__content {
-  padding: 0 var(--space-4) var(--space-4) calc(var(--space-4) + var(--space-3) + 1.75rem);
+  padding: 0 var(--space-4) var(--space-4) calc(var(--space-4) + var(--space-3) + 40px);
 }
 
 .accordion__label {
