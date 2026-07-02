@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontak — Lumina Creative Studio</title>
+    <meta
+      name="description"
+      content="Hubungi Lumina Creative Studio untuk konsultasi gratis. Kirim pesan melalui form, WhatsApp, email, atau kunjungi kantor kami di Jakarta Selatan."
+    />
+
+    <!-- Open Graph untuk share sosial media -->
+    <meta property="og:title" content="Kontak — Lumina Creative Studio" />
+    <meta
+      property="og:description"
+      content="Kami siap membantu mewujudkan proyek digital Anda."
+    />
+    <meta property="og:image" content="assets/images/og-cover.jpg" />
+
+    <link rel="icon" href="assets/images/favicon.ico" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/pages/contact.css" />
+  </head>
+  <body>
+    <!-- ============================================================
+       NAVBAR (lihat _navbar-snippet.html)
+       ============================================================ -->
+    <header class="navbar" id="navbar">
+      <div class="container navbar__inner">
+        <a href="index.html" class="navbar__logo">
+          <img
+            src="assets/images/logo/logo.svg"
+            alt="Lumina Creative Studio"
+            width="140"
+            height="32"
+          />
+        </a>
+
+        <button
+          class="navbar__toggle"
+          id="navToggle"
+          aria-label="Buka menu navigasi"
+          aria-expanded="false"
+          aria-controls="navMenu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="navbar__menu" id="navMenu">
+          <a href="index.html" class="navbar__link">Beranda</a>
+          <a href="tentang.html" class="navbar__link">Tentang Kami</a>
+          <a href="layanan.html" class="navbar__link">Layanan</a>
+          <a href="portofolio.html" class="navbar__link">Portofolio & Klien</a>
+          <a href="tim.html" class="navbar__link">Tim Kami</a>
+          <a href="kontak.html" class="navbar__link navbar__link--active"
+            >Kontak</a
+          >
+          <a href="kontak.html" class="navbar__cta btn btn--primary"
+            >Konsultasi Gratis</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============================================================
+         1. PAGE HEADER
+         ============================================================ -->
+      <section class="page-header">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Beranda</a>
+            <span aria-hidden="true">&rsaquo;</span>
+            <span aria-current="page">Kontak</span>
+          </nav>
+          <h1 class="page-header__title">Mari Berdiskusi</h1>
+          <p class="page-header__subtitle">
+            Kami siap membantu mewujudkan proyek digital Anda
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         2 & 3. FORMULIR KONTAK + INFORMASI KONTAK LANGSUNG
+         Ditampilkan berdampingan
+         ============================================================ -->
+      <section class="section contact-main" data-reveal>
+        <div class="container">
+          <div class="grid contact-main__grid">
+            <!-- Formulir Kontak -->
+            <div class="col-span-7 contact-form-wrap">
+              <form
+                id="contactForm"
+                class="contact-form"
+                novalidate
+                action="#"
+                method="post"
+              >
+                <div class="form-group">
+                  <label for="fullName" class="form-label">Nama Lengkap</label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    class="form-field"
+                    required
+                    autocomplete="name"
+                  />
+                  <span class="form-error" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-field"
+                    required
+                    autocomplete="email"
+                  />
+                  <span class="form-error" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone" class="form-label"
+                    >Nomor Telepon/WhatsApp</label
+                  >
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    class="form-field"
+                    required
+                    autocomplete="tel"
+                  />
+                  <span class="form-error" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="company" class="form-label"
+                    >Nama Perusahaan
+                    <span class="form-label__optional">(opsional)</span></label
+                  >
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    class="form-field"
+                    autocomplete="organization"
+                  />
+                  <span class="form-error" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="serviceInterest" class="form-label"
+                    >Layanan yang Diminati</label
+                  >
+                  <select
+                    id="serviceInterest"
+                    name="serviceInterest"
+                    class="form-field"
+                    required
+                  >
+                    <option value="" selected disabled>Pilih layanan</option>
+                    <option value="brand-identity">Brand Identity</option>
+                    <option value="web-app-design">Web & App Design</option>
+                    <option value="digital-marketing">Digital Marketing</option>
+                    <option value="content-creation">Content Creation</option>
+                    <option value="web-development">Web Development</option>
+                    <option value="social-media-management">
+                      Social Media Management
+                    </option>
+                    <option value="lainnya">Lainnya</option>
+                  </select>
+                  <span class="form-error" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="message" class="form-label"
+                    >Pesan/Kebutuhan Proyek</label
+                  >
+                  <textarea
+                    id="message"
+                    name="message"
+                    class="form-field"
+                    rows="5"
+                    required
+                  ></textarea>
+                  <span class="form-error" role="alert"></span>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn--primary contact-form__submit"
+                >
+                  Kirim Pesan
+                </button>
+
+                <div id="formSuccess" class="form-success" hidden>
+                  Terima kasih! Pesan Anda telah terkirim. Tim kami akan segera
+                  menghubungi Anda kembali.
+                </div>
+              </form>
+            </div>
+
+            <!-- Informasi Kontak Langsung -->
+            <div class="col-span-5 contact-info">
+              <h2 class="contact-info__title">Informasi Kontak</h2>
+
+              <ul class="contact-info__list">
+                <li class="contact-info__item">
+                  <span class="contact-info__icon" aria-hidden="true">📍</span>
+                  <div>
+                    <p class="contact-info__label">Alamat</p>
+                    <p class="contact-info__value">
+                      Jl. Kemang Raya No. 88, Jakarta Selatan, Indonesia
+                    </p>
+                  </div>
+                </li>
+                <li class="contact-info__item">
+                  <span class="contact-info__icon" aria-hidden="true">📧</span>
+                  <div>
+                    <p class="contact-info__label">Email</p>
+                    <p class="contact-info__value">
+                      <a href="mailto:hello@luminacreative.id"
+                        >hello@luminacreative.id</a
+                      >
+                    </p>
+                  </div>
+                </li>
+                <li class="contact-info__item">
+                  <span class="contact-info__icon" aria-hidden="true">📞</span>
+                  <div>
+                    <p class="contact-info__label">Telepon</p>
+                    <p class="contact-info__value">
+                      <a href="tel:+622155512345">+62 21 5551 2345</a>
+                    </p>
+                  </div>
+                </li>
+                <li class="contact-info__item">
+                  <span class="contact-info__icon" aria-hidden="true">🌐</span>
+                  <div>
+                    <p class="contact-info__label">Website</p>
+                    <p class="contact-info__value">
+                      <a
+                        href="https://www.luminacreative.id"
+                        target="_blank"
+                        rel="noopener"
+                        >www.luminacreative.id</a
+                      >
+                    </p>
+                  </div>
+                </li>
+                <li class="contact-info__item">
+                  <span class="contact-info__icon" aria-hidden="true">📸</span>
+                  <div>
+                    <p class="contact-info__label">Instagram</p>
+                    <p class="contact-info__value">
+                      <a
+                        href="https://instagram.com/luminacreative.id"
+                        target="_blank"
+                        rel="noopener"
+                        >@luminacreative.id</a
+                      >
+                    </p>
+                  </div>
+                </li>
+              </ul>
+
+              <p class="contact-info__hours">
+                <strong>Jam operasional:</strong> Senin–Jumat, 09.00–18.00 WIB
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         4. PETA LOKASI
+         ============================================================ -->
+      <section class="section--tight contact-map" data-reveal>
+        <div class="container">
+          <div class="section-header">
+            <p class="section-header__eyebrow">Lokasi</p>
+            <h2 class="section-header__title">Kunjungi Kantor Kami</h2>
+          </div>
+          <div class="contact-map__frame">
+            <iframe
+              src="https://www.google.com/maps?q=Jl.+Kemang+Raya+No.+88,+Jakarta+Selatan&output=embed"
+              width="100%"
+              height="400"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Lokasi Kantor Lumina Creative Studio"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         5. TOMBOL KONTAK CEPAT (QUICK ACTIONS)
+         ============================================================ -->
+      <section class="section--tight quick-actions" data-reveal>
+        <div class="container">
+          <div class="quick-actions__grid">
+            <a
+              href="https://wa.me/622155512345?text=Halo%20Lumina%2C%20saya%20ingin%20bertanya"
+              target="_blank"
+              rel="noopener"
+              class="btn btn--primary quick-actions__btn"
+            >
+              Chat via WhatsApp
+            </a>
+            <a
+              href="mailto:hello@luminacreative.id"
+              class="btn btn--secondary quick-actions__btn"
+            >
+              Kirim Email
+            </a>
+            <a
+              href="https://instagram.com/luminacreative.id"
+              target="_blank"
+              rel="noopener"
+              class="btn btn--secondary quick-actions__btn"
+            >
+              Ikuti Instagram Kami
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         6. FAQ SINGKAT
+         ============================================================ -->
+      <section class="section contact-faq" data-reveal>
+        <div class="container">
+          <div class="section-header section-header--center">
+            <p class="section-header__eyebrow">FAQ</p>
+            <h2 class="section-header__title">
+              Pertanyaan yang Sering Diajukan
+            </h2>
+          </div>
+
+          <div class="accordion">
+            <details class="accordion__item" open>
+              <summary class="accordion__trigger">
+                <span class="accordion__title-group">
+                  <span class="accordion__title"
+                    >Berapa lama proses pengerjaan proyek?</span
+                  >
+                </span>
+              </summary>
+              <div class="accordion__content">
+                <p>
+                  Durasi bervariasi tergantung kompleksitas dan cakupan layanan
+                  yang dipilih. Kami akan memberikan estimasi waktu yang jelas
+                  setelah sesi konsultasi awal.
+                </p>
+              </div>
+            </details>
+
+            <details class="accordion__item">
+              <summary class="accordion__trigger">
+                <span class="accordion__title-group">
+                  <span class="accordion__title"
+                    >Apakah bisa konsultasi gratis sebelum memulai proyek?</span
+                  >
+                </span>
+              </summary>
+              <div class="accordion__content">
+                <p>
+                  Bisa. Kami menyediakan sesi konsultasi gratis untuk memahami
+                  kebutuhan Anda sebelum menyusun proposal kerja sama.
+                </p>
+              </div>
+            </details>
+
+            <details class="accordion__item">
+              <summary class="accordion__trigger">
+                <span class="accordion__title-group">
+                  <span class="accordion__title"
+                    >Apakah Lumina melayani klien luar Jakarta/luar
+                    negeri?</span
+                  >
+                </span>
+              </summary>
+              <div class="accordion__content">
+                <p>
+                  Ya. Sebagian besar proses kerja kami dapat dilakukan secara
+                  remote, sehingga klien dari luar Jakarta maupun luar negeri
+                  tetap bisa bekerja sama dengan kami.
+                </p>
+              </div>
+            </details>
+
+            <details class="accordion__item">
+              <summary class="accordion__trigger">
+                <span class="accordion__title-group">
+                  <span class="accordion__title"
+                    >Bagaimana sistem pembayaran/kerja sama?</span
+                  >
+                </span>
+              </summary>
+              <div class="accordion__content">
+                <p>
+                  Skema pembayaran dan kerja sama akan disesuaikan dengan
+                  cakupan proyek dan disepakati bersama di awal, biasanya dengan
+                  sistem termin/tahapan pembayaran.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         7. CALL-TO-ACTION PENUTUP
+         ============================================================ -->
+      <section class="section cta-banner" data-reveal>
+        <div class="container cta-banner__inner">
+          <h2 class="cta-banner__title">
+            Kami senang mendengar ide Anda — mari mulai percakapan!
+          </h2>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+       FOOTER (lihat _footer-snippet.html)
+       ============================================================ -->
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <img
+            src="assets/images/logo/logo-white.svg"
+            alt="Lumina Creative Studio"
+            width="140"
+          />
+          <p>Agensi kreatif digital berbasis di Jakarta sejak 2018.</p>
+        </div>
+
+        <div class="footer__links">
+          <h4>Navigasi</h4>
+          <a href="index.html">Beranda</a>
+          <a href="tentang.html">Tentang Kami</a>
+          <a href="layanan.html">Layanan</a>
+          <a href="portofolio.html">Portofolio & Klien</a>
+          <a href="tim.html">Tim Kami</a>
+          <a href="kontak.html">Kontak</a>
+        </div>
+
+        <div class="footer__contact">
+          <h4>Kontak</h4>
+          <p>Jl. Kemang Raya No. 88, Jakarta Selatan, Indonesia</p>
+          <p>
+            <a href="mailto:hello@luminacreative.id">hello@luminacreative.id</a>
+          </p>
+          <p><a href="tel:+622155512345">+62 21 5551 2345</a></p>
+        </div>
+
+        <div class="footer__social">
+          <h4>Ikuti Kami</h4>
+          <a
+            href="https://instagram.com/luminacreative.id"
+            target="_blank"
+            rel="noopener"
+            >Instagram</a
+          >
+        </div>
+      </div>
+
+      <div class="footer__bottom container">
+        <p>
+          &copy; <span id="year"></span> Lumina Creative Studio. Seluruh hak
+          cipta dilindungi.
+        </p>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/animations.js" defer></script>
+    <script src="assets/js/form-validation.js" defer></script>
+  </body>
+</html>
