@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portofolio & Klien — Lumina Creative Studio</title>
+    <meta
+      name="description"
+      content="Dipercaya oleh brand dari berbagai industri: F&B, Fashion, Startup Teknologi, Pendidikan, dan Kesehatan. Lihat portofolio dan testimoni klien Lumina Creative Studio."
+    />
+
+    <!-- Open Graph untuk share sosial media -->
+    <meta
+      property="og:title"
+      content="Klien & Portofolio Lumina Creative Studio"
+    />
+    <meta
+      property="og:description"
+      content="Dipercaya oleh brand dari berbagai industri untuk tumbuh bersama."
+    />
+    <meta property="og:image" content="assets/images/og-cover.jpg" />
+
+    <link rel="icon" href="assets/images/favicon.ico" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/pages/portfolio.css" />
+  </head>
+  <body>
+    <!-- ============================================================
+       NAVBAR (lihat _navbar-snippet.html)
+       ============================================================ -->
+    <header class="navbar" id="navbar">
+      <div class="container navbar__inner">
+        <a href="index.html" class="navbar__logo">
+          <img
+            src="assets/images/logo/logo.svg"
+            alt="Lumina Creative Studio"
+            width="140"
+            height="32"
+          />
+        </a>
+
+        <button
+          class="navbar__toggle"
+          id="navToggle"
+          aria-label="Buka menu navigasi"
+          aria-expanded="false"
+          aria-controls="navMenu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="navbar__menu" id="navMenu">
+          <a href="index.html" class="navbar__link">Beranda</a>
+          <a href="tentang.html" class="navbar__link">Tentang Kami</a>
+          <a href="layanan.html" class="navbar__link">Layanan</a>
+          <a href="portofolio.html" class="navbar__link navbar__link--active"
+            >Portofolio & Klien</a
+          >
+          <a href="tim.html" class="navbar__link">Tim Kami</a>
+          <a href="kontak.html" class="navbar__link">Kontak</a>
+          <a href="kontak.html" class="navbar__cta btn btn--primary"
+            >Konsultasi Gratis</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============================================================
+         1. PAGE HEADER
+         ============================================================ -->
+      <section class="page-header">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Beranda</a>
+            <span aria-hidden="true">&rsaquo;</span>
+            <span aria-current="page">Portofolio & Klien</span>
+          </nav>
+          <h1 class="page-header__title">Klien & Portofolio Kami</h1>
+          <p class="page-header__subtitle">
+            Dipercaya oleh brand dari berbagai industri untuk tumbuh bersama
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         2. FILTER KATEGORI INDUSTRI
+         CATATAN: tombol data-filter akan dipakai oleh
+         portfolio-filter.js di Step 6.
+         ============================================================ -->
+      <section class="section--tight portfolio-filter">
+        <div class="container">
+          <div
+            class="portfolio-filter__bar"
+            role="group"
+            aria-label="Filter kategori industri"
+          >
+            <button
+              type="button"
+              class="portfolio-filter__btn is-active"
+              data-filter="all"
+            >
+              Semua
+            </button>
+            <button
+              type="button"
+              class="portfolio-filter__btn"
+              data-filter="fnb"
+            >
+              F&amp;B (Food &amp; Beverage)
+            </button>
+            <button
+              type="button"
+              class="portfolio-filter__btn"
+              data-filter="fashion"
+            >
+              Fashion &amp; Lifestyle
+            </button>
+            <button
+              type="button"
+              class="portfolio-filter__btn"
+              data-filter="startup"
+            >
+              Startup Teknologi
+            </button>
+            <button
+              type="button"
+              class="portfolio-filter__btn"
+              data-filter="pendidikan"
+            >
+              Pendidikan
+            </button>
+            <button
+              type="button"
+              class="portfolio-filter__btn"
+              data-filter="kesehatan"
+            >
+              Kesehatan
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         3. GRID PORTOFOLIO / STUDI KASUS
+         data-category sesuai tabel klien di 04-portofolio-klien.md
+         ============================================================ -->
+      <section class="section portfolio-grid" data-reveal>
+        <div class="container">
+          <div class="grid" id="portfolioGrid">
+            <div class="col-span-4 card card--portfolio" data-category="fnb">
+              <picture>
+                <source
+                  srcset="
+                    https://placehold.co/600x450/D6572E/FFFFFF.webp?text=Kopi+Senja+Nusantara
+                  "
+                  type="image/webp"
+                />
+                <img
+                  src="https://placehold.co/600x450/D6572E/FFFFFF?text=Kopi+Senja+Nusantara"
+                  alt="Studi kasus proyek Kopi Senja Nusantara"
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                />
+              </picture>
+              <span class="card--portfolio__badge">F&amp;B</span>
+              <h3 class="card__title">Kopi Senja Nusantara</h3>
+              <p class="card__desc">Brand Identity, Social Media Management</p>
+            </div>
+
+            <div
+              class="col-span-4 card card--portfolio"
+              data-category="pendidikan"
+            >
+              <picture>
+                <source
+                  srcset="
+                    https://placehold.co/600x450/1C1B19/FAF9F6.webp?text=Ruang+Belajar+Digital
+                  "
+                  type="image/webp"
+                />
+                <img
+                  src="https://placehold.co/600x450/1C1B19/FAF9F6?text=Ruang+Belajar+Digital"
+                  alt="Studi kasus proyek Ruang Belajar Digital"
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                />
+              </picture>
+              <span class="card--portfolio__badge">Pendidikan</span>
+              <h3 class="card__title">Ruang Belajar Digital</h3>
+              <p class="card__desc">Web &amp; App Design, Web Development</p>
+            </div>
+
+            <div
+              class="col-span-4 card card--portfolio"
+              data-category="kesehatan"
+            >
+              <picture>
+                <source
+                  srcset="
+                    https://placehold.co/600x450/5C594F/FAF9F6.webp?text=Sehat.id
+                  "
+                  type="image/webp"
+                />
+                <img
+                  src="https://placehold.co/600x450/5C594F/FAF9F6?text=Sehat.id"
+                  alt="Studi kasus proyek Sehat.id"
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                />
+              </picture>
+              <span class="card--portfolio__badge">Kesehatan</span>
+              <h3 class="card__title">Sehat.id</h3>
+              <p class="card__desc">Digital Marketing, Content Creation</p>
+            </div>
+
+            <div
+              class="col-span-4 card card--portfolio"
+              data-category="fashion"
+            >
+              <picture>
+                <source
+                  srcset="
+                    https://placehold.co/600x450/F2D9CE/1C1B19.webp?text=Nara+Fashion+House
+                  "
+                  type="image/webp"
+                />
+                <img
+                  src="https://placehold.co/600x450/F2D9CE/1C1B19?text=Nara+Fashion+House"
+                  alt="Studi kasus proyek Nara Fashion House"
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                />
+              </picture>
+              <span class="card--portfolio__badge"
+                >Fashion &amp; Lifestyle</span
+              >
+              <h3 class="card__title">Nara Fashion House</h3>
+              <p class="card__desc">Brand Identity, Content Creation</p>
+            </div>
+
+            <div
+              class="col-span-4 card card--portfolio"
+              data-category="startup"
+            >
+              <picture>
+                <source
+                  srcset="
+                    https://placehold.co/600x450/E6E2D8/1C1B19.webp?text=TechNova+Indonesia
+                  "
+                  type="image/webp"
+                />
+                <img
+                  src="https://placehold.co/600x450/E6E2D8/1C1B19?text=TechNova+Indonesia"
+                  alt="Studi kasus proyek TechNova Indonesia"
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                />
+              </picture>
+              <span class="card--portfolio__badge">Startup Teknologi</span>
+              <h3 class="card__title">TechNova Indonesia</h3>
+              <p class="card__desc">Web Development, Digital Marketing</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         4. LOGO WALL KLIEN
+         ============================================================ -->
+      <section class="section--tight logo-wall" data-reveal>
+        <div class="container">
+          <div class="section-header section-header--center">
+            <p class="section-header__eyebrow">Klien Kami</p>
+            <h2 class="section-header__title">
+              Brand yang Sudah Kami Bantu Bertumbuh
+            </h2>
+          </div>
+          <div class="logo-wall__grid">
+            <img
+              src="https://placehold.co/200x80/FFFFFF/1C1B19?text=Kopi+Senja+Nusantara"
+              alt="Logo Kopi Senja Nusantara"
+              loading="lazy"
+              width="200"
+              height="80"
+            />
+            <img
+              src="https://placehold.co/200x80/FFFFFF/1C1B19?text=Ruang+Belajar+Digital"
+              alt="Logo Ruang Belajar Digital"
+              loading="lazy"
+              width="200"
+              height="80"
+            />
+            <img
+              src="https://placehold.co/200x80/FFFFFF/1C1B19?text=Sehat.id"
+              alt="Logo Sehat.id"
+              loading="lazy"
+              width="200"
+              height="80"
+            />
+            <img
+              src="https://placehold.co/200x80/FFFFFF/1C1B19?text=Nara+Fashion+House"
+              alt="Logo Nara Fashion House"
+              loading="lazy"
+              width="200"
+              height="80"
+            />
+            <img
+              src="https://placehold.co/200x80/FFFFFF/1C1B19?text=TechNova+Indonesia"
+              alt="Logo TechNova Indonesia"
+              loading="lazy"
+              width="200"
+              height="80"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         5. TESTIMONI KLIEN
+         ============================================================ -->
+      <section class="section testimonials" data-reveal>
+        <div class="container">
+          <div class="section-header section-header--center">
+            <p class="section-header__eyebrow">Testimoni</p>
+            <h2 class="section-header__title">Apa Kata Klien Kami</h2>
+          </div>
+
+          <div class="grid">
+            <div class="col-span-6 testimonial">
+              <p class="testimonial__quote">
+                "Lumina memahami kebutuhan brand kami dan menerjemahkannya
+                menjadi identitas visual yang kuat. Prosesnya kolaboratif dan
+                hasilnya melebihi ekspektasi."
+              </p>
+              <div class="testimonial__author">
+                <img
+                  src="https://placehold.co/56x56/D6572E/FFFFFF?text=KS"
+                  alt="Foto perwakilan Kopi Senja Nusantara"
+                  loading="lazy"
+                  width="56"
+                  height="56"
+                />
+                <div>
+                  <p class="testimonial__name">Perwakilan Klien</p>
+                  <p class="testimonial__role">Kopi Senja Nusantara</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-6 testimonial">
+              <p class="testimonial__quote">
+                "Tim Lumina sangat responsif dan berbasis data dalam setiap
+                keputusan desain. Website baru kami jauh lebih cepat dan mudah
+                digunakan."
+              </p>
+              <div class="testimonial__author">
+                <img
+                  src="https://placehold.co/56x56/1C1B19/FAF9F6?text=TN"
+                  alt="Foto perwakilan TechNova Indonesia"
+                  loading="lazy"
+                  width="56"
+                  height="56"
+                />
+                <div>
+                  <p class="testimonial__name">Perwakilan Klien</p>
+                  <p class="testimonial__role">TechNova Indonesia</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         6. STATISTIK PENDUKUNG
+         ============================================================ -->
+      <section class="section stats" data-reveal>
+        <div class="container">
+          <div class="grid stats__grid">
+            <div class="col-span-4 stat-counter stat-counter--inverse">
+              <span
+                class="stat-counter__number"
+                data-count="150"
+                data-suffix="+"
+                >0</span
+              >
+              <span class="stat-counter__label">Proyek Selesai</span>
+            </div>
+            <div class="col-span-4 stat-counter stat-counter--inverse">
+              <span
+                class="stat-counter__number"
+                data-count="4.8"
+                data-suffix="/5"
+                >0</span
+              >
+              <span class="stat-counter__label">Rating Kepuasan Klien</span>
+            </div>
+            <div class="col-span-4 stat-counter stat-counter--inverse">
+              <span class="stat-counter__number" data-count="5" data-suffix=""
+                >0</span
+              >
+              <span class="stat-counter__label">Sektor Industri Dilayani</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         7. CALL-TO-ACTION
+         ============================================================ -->
+      <section class="section cta-banner" data-reveal>
+        <div class="container cta-banner__inner">
+          <h2 class="cta-banner__title">
+            Ingin brand Anda menjadi cerita sukses berikutnya?
+          </h2>
+          <a href="kontak.html" class="btn btn--primary"
+            >Mulai Proyek Bersama Kami</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+       FOOTER (lihat _footer-snippet.html)
+       ============================================================ -->
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <img
+            src="assets/images/logo/logo-white.svg"
+            alt="Lumina Creative Studio"
+            width="140"
+          />
+          <p>Agensi kreatif digital berbasis di Jakarta sejak 2018.</p>
+        </div>
+
+        <div class="footer__links">
+          <h4>Navigasi</h4>
+          <a href="index.html">Beranda</a>
+          <a href="tentang.html">Tentang Kami</a>
+          <a href="layanan.html">Layanan</a>
+          <a href="portofolio.html">Portofolio & Klien</a>
+          <a href="tim.html">Tim Kami</a>
+          <a href="kontak.html">Kontak</a>
+        </div>
+
+        <div class="footer__contact">
+          <h4>Kontak</h4>
+          <p>Jl. Kemang Raya No. 88, Jakarta Selatan, Indonesia</p>
+          <p>
+            <a href="mailto:hello@luminacreative.id">hello@luminacreative.id</a>
+          </p>
+          <p><a href="tel:+622155512345">+62 21 5551 2345</a></p>
+        </div>
+
+        <div class="footer__social">
+          <h4>Ikuti Kami</h4>
+          <a
+            href="https://instagram.com/luminacreative.id"
+            target="_blank"
+            rel="noopener"
+            >Instagram</a
+          >
+        </div>
+      </div>
+
+      <div class="footer__bottom container">
+        <p>
+          &copy; <span id="year"></span> Lumina Creative Studio. Seluruh hak
+          cipta dilindungi.
+        </p>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/animations.js" defer></script>
+    <script src="assets/js/portfolio-filter.js" defer></script>
+  </body>
+</html>

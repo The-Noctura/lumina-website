@@ -8,101 +8,14 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
-   SCROLL-REVEAL STATE
-   Dipakai oleh animations.js (IntersectionObserver) di halaman
-   yang butuh animasi scroll-reveal (Beranda, Tentang, Portofolio).
-   Belum ada di base.css resmi, jadi didefinisikan di sini karena
-   scope-nya terbatas pada halaman yang men-load animations.js.
+   CATATAN KOMPONEN REUSABLE
+   .stat-counter, .testimonial, dan [data-reveal] sekarang
+   didefinisikan di components.css (dipakai lintas halaman:
+   Beranda, Tentang Kami, Portofolio & Klien). File ini hanya
+   berisi hal yang spesifik untuk Beranda, misalnya modifier
+   .stat-counter--inverse.stat-counter--accent yang dipakai di
+   Trust Bar (lihat components.css bagian 8).
    ------------------------------------------------------------ */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity var(--duration-base) var(--ease),
-              transform var(--duration-base) var(--ease);
-}
-
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
-/* ------------------------------------------------------------
-   KOMPONEN BELUM ADA DI components.css RESMI
-   .stat-counter, .testimonial, .marquee dipakai juga di halaman
-   lain (Tentang Kami, Portofolio) menurut tabel komponen di
-   07-spesifikasi-teknis.md bagian 4, jadi idealnya pindah ke
-   components.css saat halaman tersebut dibangun. Untuk saat ini
-   didefinisikan di sini agar Beranda tetap berfungsi.
-   ------------------------------------------------------------ */
-.stat-counter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-1);
-}
-
-.stat-counter__number {
-  font-family: var(--font-display);
-  font-size: var(--fs-h2);
-  font-weight: 600;
-  color: var(--color-ink);
-}
-
-.stat-counter__label {
-  font-family: var(--font-body);
-  font-size: var(--fs-small);
-  color: var(--color-ink-muted);
-}
-
-.testimonial {
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-4);
-}
-
-.testimonial__quote {
-  font-family: var(--font-display);
-  font-size: var(--fs-body);
-  font-style: italic;
-  color: var(--color-ink);
-  line-height: 1.6;
-  margin-bottom: var(--space-3);
-}
-
-.testimonial__author {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.testimonial__author img {
-  border-radius: 50%;
-}
-
-.testimonial__name {
-  display: block;
-  font-family: var(--font-body);
-  font-style: normal;
-  font-weight: 600;
-  font-size: var(--fs-small);
-  color: var(--color-ink);
-}
-
-.testimonial__role {
-  display: block;
-  font-family: var(--font-body);
-  font-size: var(--fs-small);
-  color: var(--color-ink-muted);
-}
 
 /* ------------------------------------------------------------
    2. HERO SECTION
@@ -169,13 +82,9 @@
   text-align: center;
 }
 
-.trust-bar .stat-counter__number {
-  color: var(--color-accent);
-}
-
-.trust-bar .stat-counter__label {
-  color: var(--color-bg);
-}
+/* Warna teks stat-counter di section ini diatur lewat modifier
+   .stat-counter--inverse.stat-counter--accent pada markup HTML
+   (lihat components.css bagian 8), bukan override di sini. */
 
 @media (min-width: 600px) {
   .trust-bar__grid {

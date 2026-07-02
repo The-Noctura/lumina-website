@@ -1,0 +1,245 @@
+/* ==========================================================================
+   ABOUT.CSS
+   Style KHUSUS halaman Tentang Kami saja.
+   Style reusable (navbar, footer, btn, card, section-header, stat-counter)
+   sudah ada di components.css — tidak diduplikasi di sini.
+   Referensi: 02-tentang-kami.md
+   ========================================================================== */
+
+/* ==========================================================================
+   PAGE HEADER (dipakai bersama di halaman non-Beranda)
+   ========================================================================== */
+.page-header {
+  padding-top: var(--space-5);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-small);
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-2);
+}
+
+.breadcrumb a {
+  color: var(--color-ink-muted);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-accent);
+}
+
+.breadcrumb [aria-current="page"] {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.page-header__title {
+  margin-bottom: var(--space-4);
+}
+
+.page-header__banner img {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  object-fit: cover;
+  max-height: 420px;
+}
+
+/* ==========================================================================
+   2. CERITA KAMI
+   ========================================================================== */
+.story__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.story__lead {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--color-ink);
+  line-height: 1.4;
+  margin-bottom: var(--space-3);
+}
+
+.story__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 899px) {
+  .story__image {
+    margin-top: var(--space-4);
+  }
+}
+
+/* ==========================================================================
+   3. VISI & MISI
+   ========================================================================== */
+.vision-mission__card {
+  height: 100%;
+}
+
+.vision-mission__text {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--color-ink);
+  line-height: 1.4;
+}
+
+.vision-mission__list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.vision-mission__list li {
+  position: relative;
+  padding-left: var(--space-3);
+  color: var(--color-ink-muted);
+  line-height: 1.6;
+}
+
+.vision-mission__list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.vision-mission__list li + li {
+  margin-top: 0;
+}
+
+/* ==========================================================================
+   4. NILAI-NILAI KAMI (CORE VALUES)
+   ========================================================================== */
+.values__col {
+  display: flex;
+}
+
+.card--value {
+  width: 100%;
+  text-align: left;
+}
+
+@media (max-width: 899px) {
+  .values__col {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 599px) {
+  .values__col {
+    grid-column: span 12;
+  }
+}
+
+/* ==========================================================================
+   5. STATISTIK PERUSAHAAN (DETAIL)
+   Menggunakan .stat-counter — didefinisikan di sini karena belum ada
+   di components.css (dipakai lintas halaman: Beranda, Tentang, Portofolio)
+   ========================================================================== */
+.stats {
+  background-color: var(--color-ink);
+}
+
+.stats .section-header__eyebrow {
+  color: var(--color-accent);
+}
+
+.stats .section-header__title {
+  color: var(--color-bg);
+}
+
+.stats__grid {
+  text-align: center;
+}
+
+/* .stat-counter base + modifier .stat-counter--inverse ada di components.css;
+   markup di tentang.html sudah memakai keduanya. */
+
+@media (max-width: 899px) {
+  .stat-counter {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 599px) {
+  .stat-counter {
+    grid-column: span 12;
+  }
+}
+
+/* ==========================================================================
+   6. INDUSTRI YANG KAMI LAYANI
+   ========================================================================== */
+.industries__grid {
+  text-align: center;
+}
+
+.industries__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3);
+}
+
+.industries__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--color-accent-soft);
+  font-size: 1.75rem;
+}
+
+.industries__label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  color: var(--color-ink);
+}
+
+@media (max-width: 899px) {
+  .industries__item {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 599px) {
+  .industries__item {
+    grid-column: span 12;
+  }
+}
+
+/* ==========================================================================
+   7. CTA BANNER (dipakai bersama di halaman non-Beranda)
+   ========================================================================== */
+.cta-banner {
+  background-color: var(--color-accent-soft);
+}
+
+.cta-banner__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.cta-banner__title {
+  color: var(--color-ink);
+}
+
+/* [data-reveal] state sekarang didefinisikan di components.css
+   (dipakai lintas halaman: Beranda, Tentang Kami, Portofolio & Klien). */

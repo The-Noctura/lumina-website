@@ -1,0 +1,241 @@
+/* ==========================================================================
+   PORTFOLIO.CSS
+   Style KHUSUS halaman Portofolio & Klien saja.
+   Style reusable (navbar, footer, btn, card, section-header, stat-counter,
+   page-header, breadcrumb, cta-banner) ada di components.css / about.css
+   pattern — beberapa di antaranya didefinisikan ulang di sini karena
+   about.css tidak di-load di halaman ini (tiap halaman hanya load
+   pages/<nama>.css miliknya sendiri, sesuai arsitektur di 07).
+   Referensi: 04-portofolio-klien.md
+   ========================================================================== */
+
+/* ==========================================================================
+   1. PAGE HEADER (shared pattern lintas halaman non-Beranda)
+   ========================================================================== */
+.page-header {
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-4);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-small);
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-2);
+}
+
+.breadcrumb a {
+  color: var(--color-ink-muted);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-accent);
+}
+
+.breadcrumb [aria-current="page"] {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.page-header__title {
+  margin-bottom: var(--space-1);
+}
+
+.page-header__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--color-ink-muted);
+  max-width: 60ch;
+}
+
+/* ==========================================================================
+   2. FILTER KATEGORI INDUSTRI
+   ========================================================================== */
+.portfolio-filter__bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.portfolio-filter__btn {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-1) var(--space-3);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease),
+              color var(--duration-fast) var(--ease),
+              border-color var(--duration-fast) var(--ease);
+}
+
+.portfolio-filter__btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.portfolio-filter__btn.is-active {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
+
+/* ==========================================================================
+   3. GRID PORTOFOLIO / CARD--PORTFOLIO
+   ========================================================================== */
+.card--portfolio {
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.card--portfolio picture,
+.card--portfolio img {
+  border-radius: 0;
+}
+
+.card--portfolio img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.card--portfolio__badge {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  background-color: var(--color-surface);
+  color: var(--color-accent);
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  padding: 0.25rem var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+.card--portfolio .card__title {
+  padding: var(--space-3) var(--space-3) 0;
+  font-size: var(--fs-h3);
+}
+
+.card--portfolio .card__desc {
+  padding: var(--space-1) var(--space-3) var(--space-3);
+}
+
+@media (max-width: 899px) {
+  .card--portfolio {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 599px) {
+  .card--portfolio {
+    grid-column: span 12;
+  }
+}
+
+/* ==========================================================================
+   4. LOGO WALL KLIEN
+   ========================================================================== */
+.logo-wall {
+  background-color: var(--color-surface);
+}
+
+.logo-wall__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  align-items: center;
+  justify-items: center;
+}
+
+.logo-wall__grid img {
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: filter var(--duration-base) var(--ease),
+              opacity var(--duration-base) var(--ease);
+}
+
+.logo-wall__grid img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+@media (min-width: 600px) {
+  .logo-wall__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .logo-wall__grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* ==========================================================================
+   5. TESTIMONI KLIEN
+   .testimonial base ada di components.css. Di sini hanya override khusus
+   halaman ini (kutipan lebih besar memakai --fs-h3, bukan --fs-body seperti
+   default, dan stacking di mobile).
+   ========================================================================== */
+.testimonial .testimonial__quote {
+  font-size: var(--fs-h3);
+  font-style: normal;
+}
+
+@media (max-width: 899px) {
+  .testimonial {
+    grid-column: span 12;
+  }
+}
+
+/* ==========================================================================
+   6. STATISTIK PENDUKUNG
+   Menggunakan .stat-counter — didefinisikan di sini karena setiap halaman
+   hanya memuat file pages/<nama>.css miliknya sendiri (bukan shared file).
+   ========================================================================== */
+.stats {
+  background-color: var(--color-ink);
+}
+
+.stats__grid {
+  text-align: center;
+}
+
+/* .stat-counter base + modifier .stat-counter--inverse ada di components.css;
+   markup di portofolio.html sudah memakai keduanya. */
+
+@media (max-width: 899px) {
+  .stat-counter {
+    grid-column: span 12;
+  }
+}
+
+/* ==========================================================================
+   7. CTA BANNER (shared pattern lintas halaman non-Beranda)
+   ========================================================================== */
+.cta-banner {
+  background-color: var(--color-accent-soft);
+}
+
+.cta-banner__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.cta-banner__title {
+  color: var(--color-ink);
+  max-width: 50ch;
+}
+
+/* [data-reveal] state sekarang didefinisikan di components.css
+   (dipakai lintas halaman: Beranda, Tentang Kami, Portofolio & Klien). */

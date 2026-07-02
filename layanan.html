@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layanan — Lumina Creative Studio</title>
+    <meta
+      name="description"
+      content="Solusi kreatif menyeluruh dari Lumina Creative Studio: Brand Identity, Web & App Design, Digital Marketing, Content Creation, Web Development, dan Social Media Management."
+    />
+
+    <!-- Open Graph untuk share sosial media -->
+    <meta property="og:title" content="Layanan Lumina Creative Studio" />
+    <meta
+      property="og:description"
+      content="Solusi kreatif menyeluruh — dari strategi hingga eksekusi digital."
+    />
+    <meta property="og:image" content="assets/images/og-cover.jpg" />
+
+    <link rel="icon" href="assets/images/favicon.ico" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/pages/services.css" />
+  </head>
+  <body>
+    <!-- ============================================================
+       NAVBAR (lihat _navbar-snippet.html)
+       ============================================================ -->
+    <header class="navbar" id="navbar">
+      <div class="container navbar__inner">
+        <a href="index.html" class="navbar__logo">
+          <img
+            src="assets/images/logo/logo.svg"
+            alt="Lumina Creative Studio"
+            width="140"
+            height="32"
+          />
+        </a>
+
+        <button
+          class="navbar__toggle"
+          id="navToggle"
+          aria-label="Buka menu navigasi"
+          aria-expanded="false"
+          aria-controls="navMenu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="navbar__menu" id="navMenu">
+          <a href="index.html" class="navbar__link">Beranda</a>
+          <a href="tentang.html" class="navbar__link">Tentang Kami</a>
+          <a href="layanan.html" class="navbar__link navbar__link--active"
+            >Layanan</a
+          >
+          <a href="portofolio.html" class="navbar__link">Portofolio & Klien</a>
+          <a href="tim.html" class="navbar__link">Tim Kami</a>
+          <a href="kontak.html" class="navbar__link">Kontak</a>
+          <a href="kontak.html" class="navbar__cta btn btn--primary"
+            >Konsultasi Gratis</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============================================================
+         1. PAGE HEADER
+         ============================================================ -->
+      <section class="page-header">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Beranda</a>
+            <span aria-hidden="true">&rsaquo;</span>
+            <span aria-current="page">Layanan</span>
+          </nav>
+          <h1 class="page-header__title">Layanan Kami</h1>
+          <p class="page-header__subtitle">
+            Solusi kreatif menyeluruh — dari strategi hingga eksekusi digital
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         2. DAFTAR LAYANAN (DETAIL PER LAYANAN)
+         Desktop: grid card. Mobile (< 900px): accordion native
+         <details>/<summary> — CATATAN: accordion versi native HTML5,
+         tanpa JS tambahan (sesuai opsi di 03-layanan.md).
+         ============================================================ -->
+      <section class="section services-list">
+        <div class="container">
+          <div class="section-header">
+            <p class="section-header__eyebrow">Layanan</p>
+            <h2 class="section-header__title">Enam Layanan Utama Kami</h2>
+          </div>
+
+          <div class="accordion">
+            <details class="accordion__item" open>
+              <summary class="accordion__trigger">
+                <span class="accordion__icon" aria-hidden="true">🎨</span>
+                <span class="accordion__title-group">
+                  <span class="accordion__title">1. Brand Identity</span>
+                  <span class="accordion__desc"
+                    >Logo, brand guideline, dan visual identity</span
+                  >
+                </span>
+              </summary>
+              <div class="accordion__content">
+                <p class="accordion__label">Cakupan:</p>
+                <ul class="accordion__list">
+                  <li>Desain logo</li>
+                  <li>Panduan warna &amp; tipografi</li>
+                  <li>Brand book</li>
+                  <li>Aplikasi identitas visual di berbagai media</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="accordion__item">
+              <summary class="accordion__trigger">
+                <span class="accordion__icon" aria-hidden="true">📱</span>
+                <span class="accordion__title-group">
+                  <span class="accordion__title">2. Web &amp; App Design</span>
+                  <span class="accordion__desc"
+                    >UI/UX design untuk website dan aplikasi mobile</span
+                  >
+                </span>
+              </summary>
+              <div class="accordion__content">
+                <p class="accordion__label">Cakupan:</p>
+                <ul class="accordion__list">
+                  <li>Riset pengguna</li>
+                  <li>Wireframe</li>
+                  <li>Prototyping</li>
+                  <li>UI design</li>
+                  <li>Usability testing</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="accordion__item">
+              <summary class="accordion__trigger">
+                <span class="accordion__icon" aria-hidden="true">📈</span>
+                <span class="accordion__title-group">
+                  <span class="accordion__title">3. Digital Marketing</span>
+                  <span class="accordion__desc"
+                    >Strategi SEO, SEM, dan social media marketing</span
+                  >
+                </span>
+              </summary>
+              <div class="accordion__content">
+                <p class="accordion__label">Cakupan:</p>
+                <ul class="accordion__list">
+                  <li>Riset kata kunci &amp; SEO on-page</li>
+                  <li>Kampanye iklan berbayar (SEM/Ads)</li>
+                  <li>Perencanaan konten sosial media</li>
+                  <li>Analisis performa kampanye</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="accordion__item">
+              <summary class="accordion__trigger">
+                <span class="accordion__icon" aria-hidden="true">📷</span>
+                <span class="accordion__title-group">
+                  <span class="accordion__title">4. Content Creation</span>
+                  <span class="accordion__desc"
+                    >Fotografi, videografi, dan copywriting</span
+                  >
+                </span>
+              </summary>
+              <div class="accordion__content">
+                <p class="accordion__label">Cakupan:</p>
+                <ul class="accordion__list">
+                  <li>Produksi foto produk/brand</li>
+                  <li>Video promosi &amp; konten sosial media</li>
+                  <li>Penulisan naskah dan copy pemasaran</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="accordion__item">
+              <summary class="accordion__trigger">
+                <span class="accordion__icon" aria-hidden="true">💻</span>
+                <span class="accordion__title-group">
+                  <span class="accordion__title">5. Web Development</span>
+                  <span class="accordion__desc"
+                    >Pembuatan website custom dan e-commerce</span
+                  >
+                </span>
+              </summary>
+              <div class="accordion__content">
+                <p class="accordion__label">Cakupan:</p>
+                <ul class="accordion__list">
+                  <li>Website company profile</li>
+                  <li>Toko online (e-commerce)</li>
+                  <li>Integrasi sistem</li>
+                  <li>Maintenance &amp; support</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="accordion__item">
+              <summary class="accordion__trigger">
+                <span class="accordion__icon" aria-hidden="true">📣</span>
+                <span class="accordion__title-group">
+                  <span class="accordion__title"
+                    >6. Social Media Management</span
+                  >
+                  <span class="accordion__desc"
+                    >Pengelolaan konten dan komunitas media sosial</span
+                  >
+                </span>
+              </summary>
+              <div class="accordion__content">
+                <p class="accordion__label">Cakupan:</p>
+                <ul class="accordion__list">
+                  <li>Content planning &amp; calendar</li>
+                  <li>Posting &amp; scheduling</li>
+                  <li>Community management</li>
+                  <li>Laporan performa bulanan</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         3. PROSES KERJA KAMI (OUR PROCESS)
+         ============================================================ -->
+      <section class="section process">
+        <div class="container">
+          <div class="section-header section-header--center">
+            <p class="section-header__eyebrow">Proses Kerja</p>
+            <h2 class="section-header__title">Proses Kerja Kami</h2>
+          </div>
+
+          <ol class="process__timeline">
+            <li class="process__step">
+              <span class="process__number">1</span>
+              <h3 class="process__title">Konsultasi</h3>
+              <p class="process__desc">
+                Memahami kebutuhan dan tujuan bisnis klien
+              </p>
+            </li>
+            <li class="process__step">
+              <span class="process__number">2</span>
+              <h3 class="process__title">Strategi</h3>
+              <p class="process__desc">
+                Menyusun rencana dan konsep berbasis data
+              </p>
+            </li>
+            <li class="process__step">
+              <span class="process__number">3</span>
+              <h3 class="process__title">Eksekusi</h3>
+              <p class="process__desc">
+                Proses desain, pengembangan, dan produksi
+              </p>
+            </li>
+            <li class="process__step">
+              <span class="process__number">4</span>
+              <h3 class="process__title">Evaluasi</h3>
+              <p class="process__desc">
+                Review hasil dan optimasi berkelanjutan
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         4. MENGAPA MEMILIH KAMI (VALUE PROPOSITION)
+         ============================================================ -->
+      <section class="section why-us">
+        <div class="container">
+          <div class="section-header section-header--center">
+            <p class="section-header__eyebrow">Value Proposition</p>
+            <h2 class="section-header__title">Mengapa Memilih Kami</h2>
+          </div>
+
+          <div class="grid">
+            <div class="col-span-6 why-us__item">
+              <span class="why-us__check" aria-hidden="true">✓</span>
+              <p>
+                Tim multidisiplin berpengalaman (desainer, developer,
+                strategist, content creator)
+              </p>
+            </div>
+            <div class="col-span-6 why-us__item">
+              <span class="why-us__check" aria-hidden="true">✓</span>
+              <p>Pendekatan berbasis data dan kolaboratif</p>
+            </div>
+            <div class="col-span-6 why-us__item">
+              <span class="why-us__check" aria-hidden="true">✓</span>
+              <p>Rekam jejak 150+ proyek dengan rating kepuasan 4.8/5</p>
+            </div>
+            <div class="col-span-6 why-us__item">
+              <span class="why-us__check" aria-hidden="true">✓</span>
+              <p>
+                Melayani berbagai industri (F&amp;B, fashion, startup,
+                pendidikan, kesehatan)
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         5. CALL-TO-ACTION
+         ============================================================ -->
+      <section class="section cta-banner">
+        <div class="container cta-banner__inner">
+          <h2 class="cta-banner__title">
+            Punya proyek dalam pikiran? Mari diskusikan kebutuhan Anda.
+          </h2>
+          <a href="kontak.html" class="btn btn--primary">Konsultasi Gratis</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+       FOOTER (lihat _footer-snippet.html)
+       ============================================================ -->
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <img
+            src="assets/images/logo/logo-white.svg"
+            alt="Lumina Creative Studio"
+            width="140"
+          />
+          <p>Agensi kreatif digital berbasis di Jakarta sejak 2018.</p>
+        </div>
+
+        <div class="footer__links">
+          <h4>Navigasi</h4>
+          <a href="index.html">Beranda</a>
+          <a href="tentang.html">Tentang Kami</a>
+          <a href="layanan.html">Layanan</a>
+          <a href="portofolio.html">Portofolio & Klien</a>
+          <a href="tim.html">Tim Kami</a>
+          <a href="kontak.html">Kontak</a>
+        </div>
+
+        <div class="footer__contact">
+          <h4>Kontak</h4>
+          <p>Jl. Kemang Raya No. 88, Jakarta Selatan, Indonesia</p>
+          <p>
+            <a href="mailto:hello@luminacreative.id">hello@luminacreative.id</a>
+          </p>
+          <p><a href="tel:+622155512345">+62 21 5551 2345</a></p>
+        </div>
+
+        <div class="footer__social">
+          <h4>Ikuti Kami</h4>
+          <a
+            href="https://instagram.com/luminacreative.id"
+            target="_blank"
+            rel="noopener"
+            >Instagram</a
+          >
+        </div>
+      </div>
+
+      <div class="footer__bottom container">
+        <p>
+          &copy; <span id="year"></span> Lumina Creative Studio. Seluruh hak
+          cipta dilindungi.
+        </p>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>

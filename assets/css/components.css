@@ -471,3 +471,202 @@
 .card__link:hover {
   color: var(--color-accent);
 }
+
+/* ==========================================================================
+   6. PAGE HEADER
+   Dipakai di semua halaman selain Beranda (Tentang, Layanan, Portofolio,
+   Tim, Kontak) — breadcrumb + judul + sub-judul opsional.
+   ========================================================================== */
+.page-header {
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-4);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-small);
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-2);
+}
+
+.breadcrumb a {
+  color: var(--color-ink-muted);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-accent);
+}
+
+.breadcrumb [aria-current="page"] {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.page-header__title {
+  margin-bottom: var(--space-1);
+}
+
+.page-header__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--color-ink-muted);
+  max-width: 60ch;
+}
+
+.page-header__banner img {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  object-fit: cover;
+  max-height: 420px;
+}
+
+/* ==========================================================================
+   7. CTA BANNER
+   Dipakai di semua halaman selain Beranda sebagai penutup section.
+   (Beranda punya markup CTA sendiri di home.css karena strukturnya
+   sedikit berbeda — headline lebih besar, tanpa card wrapper.)
+   ========================================================================== */
+.cta-banner {
+  background-color: var(--color-accent-soft);
+}
+
+.cta-banner__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.cta-banner__title {
+  color: var(--color-ink);
+  max-width: 50ch;
+}
+
+/* ==========================================================================
+   8. STAT COUNTER
+   Dipakai di Beranda, Tentang Kami, dan Portofolio & Klien.
+   Base class netral (tanpa warna teks hardcode ke satu konteks latar);
+   gunakan modifier .stat-counter--inverse saat berada di atas latar gelap
+   (mis. section .stats dengan --color-ink sebagai background).
+   ========================================================================== */
+.stat-counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.stat-counter__number {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  color: var(--color-ink);
+  line-height: 1;
+}
+
+.stat-counter__label {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--color-ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Modifier untuk section berlatar gelap (mis. .stats / .trust-bar dengan
+   background: var(--color-ink)) */
+.stat-counter--inverse .stat-counter__number {
+  font-size: var(--fs-h1);
+  color: var(--color-bg);
+}
+
+.stat-counter--inverse .stat-counter__label {
+  color: rgba(250, 249, 246, 0.65);
+}
+
+/* Sub-modifier: angka pakai warna aksen (dipakai di Trust Bar Beranda) */
+.stat-counter--inverse.stat-counter--accent .stat-counter__number {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   9. TESTIMONIAL
+   Dipakai di Beranda dan Portofolio & Klien.
+   ========================================================================== */
+.testimonial {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.testimonial__quote {
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+  font-style: italic;
+  color: var(--color-ink);
+  line-height: 1.6;
+}
+
+.testimonial__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.testimonial__author img {
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+}
+
+.testimonial__name {
+  display: block;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 700;
+  font-size: var(--fs-small);
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.testimonial__role {
+  display: block;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: var(--fs-small);
+  color: var(--color-ink-muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+   10. SCROLL-REVEAL STATE
+   Dipakai oleh animations.js (IntersectionObserver) di halaman yang
+   men-load animations.js: Beranda, Tentang Kami, Portofolio & Klien.
+   ========================================================================== */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--duration-base) var(--ease),
+              transform var(--duration-base) var(--ease);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

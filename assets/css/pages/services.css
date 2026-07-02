@@ -1,0 +1,318 @@
+/* ==========================================================================
+   SERVICES.CSS
+   Style KHUSUS halaman Layanan saja.
+   Style reusable (navbar, footer, btn, card, section-header) ada di
+   components.css — tidak diduplikasi di sini.
+   Referensi: 03-layanan.md
+
+   CATATAN IMPLEMENTASI ACCORDION:
+   Dipilih pendekatan native HTML5 <details>/<summary> (bukan custom JS),
+   sesuai opsi yang diizinkan di 03-layanan.md bagian "Catatan Desain".
+   Karena itu TIDAK ADA file JS accordion terpisah yang dibutuhkan —
+   perilaku buka/tutup sepenuhnya ditangani browser secara native.
+   Di desktop (>= 900px), seluruh item ditampilkan grid 2 kolom terbuka
+   (lihat media query di bawah) agar terasa seperti grid card, bukan
+   accordion — namun tetap 1 markup <details> yang sama untuk semua layar.
+   ========================================================================== */
+
+.page-header__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--color-ink-muted);
+  max-width: 60ch;
+  margin-top: var(--space-1);
+}
+
+/* ==========================================================================
+   2. ACCORDION / DAFTAR LAYANAN
+   ========================================================================== */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.accordion__item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.accordion__item[open] {
+  border-color: var(--color-accent);
+}
+
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-body);
+}
+
+.accordion__trigger::-webkit-details-marker {
+  display: none;
+}
+
+.accordion__trigger::marker {
+  content: "";
+}
+
+.accordion__trigger::after {
+  content: "+";
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  transition: transform var(--duration-base) var(--ease);
+}
+
+.accordion__item[open] .accordion__trigger::after {
+  transform: rotate(45deg);
+}
+
+.accordion__icon {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+}
+
+.accordion__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.accordion__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--color-ink);
+}
+
+.accordion__desc {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--color-ink-muted);
+}
+
+.accordion__content {
+  padding: 0 var(--space-4) var(--space-4) calc(var(--space-4) + var(--space-3) + 1.75rem);
+}
+
+.accordion__label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-ink);
+  margin-bottom: var(--space-1);
+}
+
+.accordion__list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.accordion__list li {
+  position: relative;
+  padding-left: var(--space-3);
+  color: var(--color-ink-muted);
+}
+
+.accordion__list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+.accordion__list li + li {
+  margin-top: 0;
+}
+
+@media (max-width: 599px) {
+  .accordion__content {
+    padding-left: var(--space-4);
+  }
+}
+
+/* Desktop: layout grid 2 kolom, seluruh item tampil terbuka seperti card */
+@media (min-width: 900px) {
+  .accordion {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+
+  .accordion__item {
+    border-radius: var(--radius-lg);
+  }
+}
+
+/* ==========================================================================
+   3. PROSES KERJA KAMI — Timeline bernomor
+   ========================================================================== */
+.process__timeline {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  counter-reset: none;
+}
+
+.process__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  position: relative;
+}
+
+.process__step + .process__step {
+  margin-top: 0;
+}
+
+.process__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+.process__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--color-ink);
+}
+
+.process__desc {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--color-ink-muted);
+}
+
+@media (max-width: 899px) {
+  .process__timeline {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 599px) {
+  .process__timeline {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   4. MENGAPA MEMILIH KAMI (VALUE PROPOSITION)
+   ========================================================================== */
+.why-us__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2);
+}
+
+.why-us__item p {
+  color: var(--color-ink);
+  font-weight: 500;
+  margin: 0;
+}
+
+.why-us__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+@media (max-width: 899px) {
+  .why-us__item {
+    grid-column: span 12;
+  }
+}
+
+/* ==========================================================================
+   5. PAGE HEADER (dipakai bersama di halaman non-Beranda)
+   ========================================================================== */
+.page-header {
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-4);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-small);
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-2);
+}
+
+.breadcrumb a {
+  color: var(--color-ink-muted);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-accent);
+}
+
+.breadcrumb [aria-current="page"] {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.page-header__title {
+  margin-bottom: var(--space-1);
+}
+
+/* ==========================================================================
+   6. CTA BANNER (dipakai bersama di halaman non-Beranda)
+   ========================================================================== */
+.cta-banner {
+  background-color: var(--color-accent-soft);
+}
+
+.cta-banner__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.cta-banner__title {
+  color: var(--color-ink);
+  max-width: 50ch;
+}
+
+/* Catatan: halaman Layanan TIDAK memuat animations.js (sesuai pembagian
+   resmi di 07-spesifikasi-teknis.md bagian 5 — animations.js hanya untuk
+   Beranda, Tentang Kami, Portofolio & Klien), sehingga atribut
+   [data-reveal] sengaja tidak dipakai di sini — memakainya tanpa
+   IntersectionObserver yang berjalan akan membuat elemen permanen
+   tersembunyi (opacity: 0). */
