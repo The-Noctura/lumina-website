@@ -1,3 +1,8 @@
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 /* ==========================================================================
    RESET.CSS
    Modern CSS reset — pendekatan wajar untuk production, bukan reset agresif.

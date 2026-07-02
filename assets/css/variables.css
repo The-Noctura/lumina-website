@@ -26,7 +26,7 @@
   --font-body: 'Inter', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 
-  --fs-h1: clamp(2.5rem, 5vw, 4.5rem);
+  --fs-h1: clamp(2rem, 5vw, 4.5rem);
   --fs-h2: clamp(2rem, 4vw, 3rem);
   --fs-h3: clamp(1.5rem, 3vw, 2rem);
   --fs-body: 1rem;
