@@ -44,6 +44,8 @@
   display: block;
   height: 32px;
   width: auto;
+  max-width: 140px;
+  object-fit: contain;
 }
 
 /* Hamburger toggle button — hanya tampil di mobile/tablet (< 900px) */
@@ -213,6 +215,13 @@
   padding-bottom: var(--space-5);
 }
 
+.footer__brand,
+.footer__links,
+.footer__contact,
+.footer__social {
+  min-width: 0;
+}
+
 .footer__brand {
   grid-column: span 12;
 }
@@ -220,6 +229,8 @@
 .footer__brand img {
   height: 28px;
   width: auto;
+  max-width: 140px;
+  object-fit: contain;
   margin-bottom: var(--space-2);
 }
 
@@ -439,6 +450,11 @@
   background-color: var(--color-accent-soft);
   color: var(--color-accent);
   margin-bottom: var(--space-2);
+}
+
+.card__icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 .card__title {
