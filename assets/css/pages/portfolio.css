@@ -31,7 +31,7 @@
 }
 
 .breadcrumb a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 
 .breadcrumb [aria-current="page"] {
@@ -80,9 +80,10 @@
 }
 
 .portfolio-filter__btn.is-active {
-  background-color: var(--color-accent);
-  border-color: var(--color-accent);
-  color: #fff;
+  /* Aksesibilitas: --color-accent murni vs putih hanya 3.99:1 (gagal AA). */
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: var(--color-surface);
 }
 
 /* ==========================================================================
@@ -110,7 +111,7 @@
   top: var(--space-2);
   left: var(--space-2);
   background-color: var(--color-surface);
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
   font-family: var(--font-body);
   font-size: var(--fs-small);
   font-weight: 700;
@@ -148,7 +149,7 @@
 
 .logo-wall__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-4);
   align-items: center;
   justify-items: center;
@@ -168,13 +169,13 @@
 
 @media (min-width: 600px) {
   .logo-wall__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 900px) {
   .logo-wall__grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 

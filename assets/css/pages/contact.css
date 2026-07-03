@@ -71,14 +71,14 @@ select.form-field {
 /* State error — class ditambahkan/dikendalikan via form-validation.js
    pada .form-field yang gagal validasi (opsional, disiapkan sebagai hook) */
 .form-field.is-invalid {
-  border-color: #c0392b;
+  border-color: var(--color-danger);
 }
 
 .form-error {
   display: block;
   min-height: 1.2em;
   font-size: var(--fs-small);
-  color: #c0392b;
+  color: var(--color-danger);
 }
 
 .contact-form__submit {
@@ -133,7 +133,7 @@ select.form-field {
   height: 36px;
   border-radius: var(--radius-md);
   background-color: var(--color-accent-soft);
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 
 .contact-info__icon svg {

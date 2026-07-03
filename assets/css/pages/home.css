@@ -62,7 +62,7 @@
 
 @media (min-width: 900px) {
   .hero__inner {
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
     gap: var(--space-6);
   }
 }
@@ -77,7 +77,10 @@
 
 .trust-bar__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* 1 kolom di viewport sangat sempit (< 400px) agar angka bersuffix
+     panjang seperti "24 Orang" (dipaksa satu baris via white-space:
+     nowrap di components.css) tidak overflow keluar kolom. */
+  grid-template-columns: 1fr;
   gap: var(--space-4);
   text-align: center;
 }
@@ -86,9 +89,15 @@
    .stat-counter--inverse.stat-counter--accent pada markup HTML
    (lihat components.css bagian 8), bukan override di sini. */
 
+@media (min-width: 400px) {
+  .trust-bar__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (min-width: 600px) {
   .trust-bar__grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -146,8 +155,8 @@
 .marquee {
   width: 100%;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, var(--color-ink) 10%, var(--color-ink) 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, var(--color-ink) 10%, var(--color-ink) 90%, transparent);
 }
 
 .marquee__track {
@@ -210,7 +219,7 @@
 
 @media (min-width: 900px) {
   .about-snippet__inner {
-    grid-template-columns: 1fr 1.1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
     gap: var(--space-6);
   }
 }
@@ -232,7 +241,7 @@
 
 @media (min-width: 900px) {
   .testimonials__grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }
 

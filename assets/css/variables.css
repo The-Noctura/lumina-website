@@ -20,6 +20,16 @@
   --color-accent: #D6572E;        /* aksen terracotta/oranye kreatif */
   --color-accent-soft: #F2D9CE;
   --color-border: #E6E2D8;
+  --color-danger: #C0392B;
+  --color-accent-hover: #B8481F;
+  --color-accent-hover-dark: #9A3D19;
+
+  /* === COLOR — RGB CHANNELS (untuk rgba() dinamis, mis. box-shadow,
+     overlay, teks di atas latar gelap) — sinkron dengan --color-ink dan
+     --color-bg di atas. Jika nilai hex --color-ink/--color-bg berubah,
+     update juga channel RGB berikut agar tetap konsisten. === */
+  --color-ink-rgb: 28, 27, 25;
+  --color-bg-rgb: 250, 249, 246;
 
   /* === TYPOGRAPHY === */
   --font-display: 'Fraunces', serif;

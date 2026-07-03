@@ -17,11 +17,20 @@
 /* --------------------------------------------------------------------------
    GRID SYSTEM
    12 kolom, gap dari design token --space-4
+
+   CATATAN PENTING: pakai minmax(0, 1fr), BUKAN 1fr polos.
+   Secara default, track grid "1fr" punya batas bawah otomatis = ukuran
+   min-content dari isinya (bukan 0). Jika sebuah card berisi konten yang
+   "enggan menyusut" (judul tanpa spasi, ikon dengan lebar tetap, dsb),
+   grid track akan dipaksa melebar melebihi lebar container yang tersedia
+   -> menyebabkan card/section overflow horizontal dan terpotong di layar
+   sempit. minmax(0, 1fr) mengizinkan track menyusut sampai 0 sehingga
+   konten di dalamnya yang wrap/scroll, bukan grid-nya yang melebar.
    -------------------------------------------------------------------------- */
 .grid {
   display: grid;
   gap: var(--space-4);
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
 /* Util minimal untuk span kolom, dibuat manual (bukan dari framework utility) */

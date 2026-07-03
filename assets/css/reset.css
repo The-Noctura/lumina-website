@@ -75,7 +75,13 @@ table {
   border-spacing: 0;
 }
 
-/* 9. Hindari word overflow pada elemen teks panjang (URL, teks tanpa spasi) */
+/* 9. Cegah teks tanpa spasi (URL panjang, dsb) merusak layout, TANPA
+      memotong kata normal di tengah. overflow-wrap: break-word bawaan
+      browser sering terlalu agresif dan memotong kata biasa (mis.
+      "Development" -> "Developmen" + "t") saat container sedikit sempit.
+      word-break: normal memastikan kata utuh selalu diprioritaskan wrap
+      ke baris baru; overflow-wrap: anywhere hanya jadi fallback saat kata
+      itu sendiri lebih lebar dari container-nya. */
 p,
 h1,
 h2,
@@ -83,7 +89,8 @@ h3,
 h4,
 h5,
 h6 {
-  overflow-wrap: break-word;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 /* 10. Elemen yang di-hide via atribut tetap konsisten di semua browser */

@@ -64,9 +64,11 @@
 .accordion__trigger::after {
   content: "+";
   margin-left: auto;
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  color: var(--color-accent);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--color-accent-hover);
   flex-shrink: 0;
   transition: transform var(--duration-base) var(--ease);
 }
@@ -82,7 +84,7 @@
   width: 40px;
   height: 40px;
   flex-shrink: 0;
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 
 .accordion__icon svg {
@@ -140,7 +142,7 @@
   content: "•";
   position: absolute;
   left: 0;
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 
 .accordion__list li + li {
@@ -157,7 +159,7 @@
 @media (min-width: 900px) {
   .accordion {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-3);
   }
 
@@ -173,7 +175,7 @@
   list-style: none;
   padding-left: 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-4);
   counter-reset: none;
 }
@@ -199,8 +201,10 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background-color: var(--color-accent);
-  color: #fff;
+  /* Aksesibilitas: --color-accent murni vs teks putih hanya 3.99:1
+     (gagal AA 4.5:1). --color-accent-hover memenuhi 5.27:1. */
+  background-color: var(--color-accent-hover);
+  color: var(--color-surface);
   font-family: var(--font-display);
   font-size: var(--fs-h3);
   font-weight: 600;
@@ -221,7 +225,7 @@
 
 @media (max-width: 899px) {
   .process__timeline {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -255,7 +259,7 @@
   height: 28px;
   border-radius: 50%;
   background-color: var(--color-accent-soft);
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -288,7 +292,7 @@
 }
 
 .breadcrumb a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 
 .breadcrumb [aria-current="page"] {

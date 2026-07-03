@@ -23,7 +23,7 @@
 /* State: navbar berubah style saat discroll (dikendalikan main.js) */
 .navbar--scrolled {
   border-bottom-color: var(--color-border);
-  box-shadow: 0 2px 12px rgba(28, 27, 25, 0.06);
+  box-shadow: 0 2px 12px rgba(var(--color-ink-rgb), 0.06);
 }
 
 .navbar__inner {
@@ -148,7 +148,7 @@
     gap: 0;
     background-color: var(--color-surface);
     border-bottom: 1px solid var(--color-border);
-    box-shadow: 0 8px 16px rgba(28, 27, 25, 0.08);
+    box-shadow: 0 8px 16px rgba(var(--color-ink-rgb), 0.08);
 
     /* Tersembunyi secara default di mobile */
     max-height: 0;
@@ -235,7 +235,7 @@
 }
 
 .footer__brand p {
-  color: rgba(250, 249, 246, 0.65);
+  color: rgba(var(--color-bg-rgb), 0.65);
   font-size: var(--fs-small);
   max-width: 32ch;
 }
@@ -262,7 +262,7 @@
 .footer__contact a,
 .footer__social a {
   display: block;
-  color: rgba(250, 249, 246, 0.65);
+  color: rgba(var(--color-bg-rgb), 0.65);
   text-decoration: none;
   font-size: var(--fs-small);
   padding-block: 0.35rem;
@@ -276,20 +276,20 @@
 }
 
 .footer__contact p {
-  color: rgba(250, 249, 246, 0.65);
+  color: rgba(var(--color-bg-rgb), 0.65);
   font-size: var(--fs-small);
   margin: 0;
   padding-block: 0.35rem;
 }
 
 .footer__bottom {
-  border-top: 1px solid rgba(250, 249, 246, 0.15);
+  border-top: 1px solid rgba(var(--color-bg-rgb), 0.15);
   padding-top: var(--space-3);
 }
 
 .footer__bottom p {
   font-size: var(--fs-small);
-  color: rgba(250, 249, 246, 0.5);
+  color: rgba(var(--color-bg-rgb), 0.5);
   margin: 0;
   text-align: center;
 }
@@ -351,11 +351,14 @@
 }
 
 .btn--primary {
-  background-color: var(--color-accent);
-  color: #fff;
+  /* Aksesibilitas: --color-accent murni vs teks putih hanya 3.99:1 (gagal
+     WCAG AA 4.5:1 untuk teks normal). --color-accent-hover dipakai sebagai
+     warna default agar kontras teks putih lolos AA (5.27:1). */
+  background-color: var(--color-accent-hover);
+  color: var(--color-surface);
 }
 .btn--primary:hover {
-  background-color: #b8481f;
+  background-color: var(--color-accent-hover-dark);
   transform: translateY(-2px);
 }
 
@@ -372,10 +375,10 @@
 .btn--secondary-inverse {
   background-color: transparent;
   color: var(--color-bg);
-  border-color: rgba(250, 249, 246, 0.3);
+  border-color: rgba(var(--color-bg-rgb), 0.3);
 }
 .btn--secondary-inverse:hover {
-  background-color: rgba(250, 249, 246, 0.08);
+  background-color: rgba(var(--color-bg-rgb), 0.08);
 }
 
 /* ==========================================================================
@@ -399,7 +402,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
   margin-bottom: var(--space-1);
 }
 
@@ -436,7 +439,7 @@
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(28, 27, 25, 0.08);
+  box-shadow: 0 12px 24px rgba(var(--color-ink-rgb), 0.08);
   border-color: var(--color-border);
 }
 
@@ -448,7 +451,7 @@
   height: 48px;
   border-radius: var(--radius-md);
   background-color: var(--color-accent-soft);
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
   margin-bottom: var(--space-2);
 }
 
@@ -485,7 +488,7 @@
 }
 
 .card__link:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 
 /* ==========================================================================
@@ -512,7 +515,7 @@
 }
 
 .breadcrumb a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 
 .breadcrumb [aria-current="page"] {
@@ -582,6 +585,7 @@
   font-weight: 600;
   color: var(--color-ink);
   line-height: 1;
+  white-space: nowrap;
 }
 
 .stat-counter__label {
@@ -600,12 +604,12 @@
 }
 
 .stat-counter--inverse .stat-counter__label {
-  color: rgba(250, 249, 246, 0.65);
+  color: rgba(var(--color-bg-rgb), 0.65);
 }
 
 /* Sub-modifier: angka pakai warna aksen (dipakai di Trust Bar Beranda) */
 .stat-counter--inverse.stat-counter--accent .stat-counter__number {
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 
 /* ==========================================================================
@@ -660,129 +664,6 @@
   font-size: var(--fs-small);
   color: var(--color-ink-muted);
   margin: 0;
-}
-
-/* ==========================================================================
-   11. ACCORDION
-   Dipakai di Layanan (Daftar Layanan, versi mobile & referensi desktop)
-   dan Kontak (FAQ Singkat). Berbasis elemen native <details>/<summary>.
-   ========================================================================== */
-.accordion {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.accordion__item {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  transition: border-color var(--duration-base) var(--ease),
-              box-shadow var(--duration-base) var(--ease);
-}
-
-.accordion__item[open] {
-  border-color: var(--color-accent);
-  box-shadow: 0 8px 20px rgba(28, 27, 25, 0.06);
-}
-
-.accordion__trigger {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  list-style: none;
-  cursor: pointer;
-  padding: var(--space-3) var(--space-4);
-  font-family: var(--font-body);
-  color: var(--color-ink);
-}
-
-.accordion__trigger::-webkit-details-marker {
-  display: none;
-}
-
-/* Chevron custom via pseudo-element, memutar saat item terbuka */
-.accordion__trigger::after {
-  content: "";
-  flex-shrink: 0;
-  margin-left: auto;
-  width: 20px;
-  height: 20px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%235C594F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  transition: transform var(--duration-base) var(--ease);
-}
-
-.accordion__item[open] .accordion__trigger::after {
-  transform: rotate(180deg);
-}
-
-/* Ikon opsional di sisi kiri trigger (dipakai di Layanan, tidak di FAQ) */
-.accordion__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  background-color: var(--color-accent-soft);
-  color: var(--color-accent);
-}
-
-.accordion__icon svg {
-  width: 20px;
-  height: 20px;
-}
-
-.accordion__title-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.accordion__title {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: var(--fs-body);
-  color: var(--color-ink);
-  line-height: 1.4;
-}
-
-/* Deskripsi opsional di bawah judul (dipakai di Layanan, tidak di FAQ) */
-.accordion__desc {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: var(--fs-small);
-  color: var(--color-ink-muted);
-}
-
-.accordion__content {
-  padding: 0 var(--space-4) var(--space-3) var(--space-4);
-  font-family: var(--font-body);
-  color: var(--color-ink-muted);
-  line-height: 1.6;
-}
-
-.accordion__content p {
-  margin: 0;
-}
-
-.accordion__label {
-  font-family: var(--font-body);
-  font-size: var(--fs-small);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--color-ink);
-  margin-bottom: var(--space-1);
-}
-
-.accordion__list {
-  padding-left: var(--space-3);
 }
 
 /* ==========================================================================

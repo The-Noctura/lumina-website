@@ -27,7 +27,7 @@
 }
 
 .breadcrumb a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 
 .breadcrumb [aria-current="page"] {
@@ -109,7 +109,7 @@
   content: "→";
   position: absolute;
   left: 0;
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
   font-weight: 700;
 }
 
@@ -151,7 +151,7 @@
 }
 
 .stats .section-header__eyebrow {
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 
 .stats .section-header__title {
@@ -200,7 +200,12 @@
   height: 64px;
   border-radius: 50%;
   background-color: var(--color-accent-soft);
-  font-size: 1.75rem;
+  color: var(--color-accent-hover);
+}
+
+.industries__icon svg {
+  width: 28px;
+  height: 28px;
 }
 
 .industries__label {

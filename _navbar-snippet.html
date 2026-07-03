@@ -1,0 +1,38 @@
+<!--
+  ============================================================
+  NAVBAR SNIPPET — Lumina Creative Studio
+  Referensi: 07-spesifikasi-teknis.md — bagian 3.2 Komponen Navbar
+  Copy-paste blok ini persis setelah <body> di keenam halaman:
+  index.html, tentang.html, layanan.html, portofolio.html,
+  tim.html, kontak.html
+
+  CATATAN:
+  - Tandai link aktif secara manual per halaman dengan
+    class .navbar__link--active pada <a> yang sesuai,
+    ATAU biarkan main.js menandainya otomatis berdasarkan
+    window.location.pathname.
+  - Toggle mobile (hamburger) dikendalikan aria-expanded,
+    logikanya ada di assets/js/main.js.
+  ============================================================
+-->
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <img src="assets/images/logo/logo.svg" alt="Lumina Creative Studio" width="140" height="32">
+    </a>
+
+    <button class="navbar__toggle" id="navToggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="navbar__menu" id="navMenu">
+      <a href="index.html" class="navbar__link">Beranda</a>
+      <a href="tentang.html" class="navbar__link">Tentang Kami</a>
+      <a href="layanan.html" class="navbar__link">Layanan</a>
+      <a href="portofolio.html" class="navbar__link">Portofolio & Klien</a>
+      <a href="tim.html" class="navbar__link">Tim Kami</a>
+      <a href="kontak.html" class="navbar__link">Kontak</a>
+      <a href="kontak.html" class="navbar__cta btn btn--primary">Konsultasi Gratis</a>
+    </nav>
+  </div>
+</header>
