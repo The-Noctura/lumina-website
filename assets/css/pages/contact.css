@@ -125,9 +125,20 @@ select.form-field {
 }
 
 .contact-info__icon {
-  font-size: 1.25rem;
-  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.contact-info__icon svg {
+  width: 18px;
+  height: 18px;
 }
 
 .contact-info__label {

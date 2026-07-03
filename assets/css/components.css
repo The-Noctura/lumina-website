@@ -663,6 +663,129 @@
 }
 
 /* ==========================================================================
+   11. ACCORDION
+   Dipakai di Layanan (Daftar Layanan, versi mobile & referensi desktop)
+   dan Kontak (FAQ Singkat). Berbasis elemen native <details>/<summary>.
+   ========================================================================== */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.accordion__item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--duration-base) var(--ease),
+              box-shadow var(--duration-base) var(--ease);
+}
+
+.accordion__item[open] {
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 20px rgba(28, 27, 25, 0.06);
+}
+
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  list-style: none;
+  cursor: pointer;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+  color: var(--color-ink);
+}
+
+.accordion__trigger::-webkit-details-marker {
+  display: none;
+}
+
+/* Chevron custom via pseudo-element, memutar saat item terbuka */
+.accordion__trigger::after {
+  content: "";
+  flex-shrink: 0;
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%235C594F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: transform var(--duration-base) var(--ease);
+}
+
+.accordion__item[open] .accordion__trigger::after {
+  transform: rotate(180deg);
+}
+
+/* Ikon opsional di sisi kiri trigger (dipakai di Layanan, tidak di FAQ) */
+.accordion__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.accordion__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.accordion__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.accordion__title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-body);
+  color: var(--color-ink);
+  line-height: 1.4;
+}
+
+/* Deskripsi opsional di bawah judul (dipakai di Layanan, tidak di FAQ) */
+.accordion__desc {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-small);
+  color: var(--color-ink-muted);
+}
+
+.accordion__content {
+  padding: 0 var(--space-4) var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+  color: var(--color-ink-muted);
+  line-height: 1.6;
+}
+
+.accordion__content p {
+  margin: 0;
+}
+
+.accordion__label {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-ink);
+  margin-bottom: var(--space-1);
+}
+
+.accordion__list {
+  padding-left: var(--space-3);
+}
+
+/* ==========================================================================
    10. SCROLL-REVEAL STATE
    Dipakai oleh animations.js (IntersectionObserver) di halaman yang
    men-load animations.js: Beranda, Tentang Kami, Portofolio & Klien.
