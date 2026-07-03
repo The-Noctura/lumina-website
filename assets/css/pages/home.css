@@ -112,6 +112,29 @@
   margin-top: var(--space-5);
 }
 
+/* Perbaikan: fs-h3 global (clamp hingga 2rem/32px) membuat judul layanan
+   terpanjang ("Web Development") lebih lebar dari ruang teks card pada
+   sebagian breakpoint 4-kolom (>=900px), sehingga bisa terpotong/dipecah
+   oleh hyphens:auto di reset.css ("Develop-ment").
+
+   Diturunkan batas atas clamp (2rem -> 1.6rem) KHUSUS di grid layanan
+   Beranda ini saja (tidak mengubah token --fs-h3 global yang dipakai
+   card lain), agar "Web Development" muat 1 baris di sebagian besar
+   layar desktop (>=1200px).
+
+   CATATAN: batas bawah sengaja tidak diturunkan lebih jauh dari 1.35rem
+   — mengecilkan sampai ~1.15rem (agar "Development" muat 1 baris bahkan
+   di 900px) akan membuat judul card nyaris sama besar dengan body text,
+   merusak hierarki visual heading demi satu kata di satu breakpoint
+   sempit. Di rentang 900-1150px, "Web Development" boleh wrap alami ke
+   2 baris (seperti "Web & App Design" dan "Digital Marketing" yang
+   sudah wrap wajar) — itu hasil yang rapi. hyphens:auto tetap aktif
+   sebagai pengaman terakhir jika suatu saat viewport lebih sempit dari
+   perkiraan ini. */
+.services-preview__grid .card__title {
+  font-size: clamp(1.35rem, 2.2vw, 1.6rem);
+}
+
 /* Perbaikan responsif: layout.css resmi hanya stack col-span-4/6 di mobile,
    col-span-3 tidak didaftarkan sehingga card layanan tetap sempit (1/4 lebar)
    di layar kecil. Override di-scope ke section ini saja. */

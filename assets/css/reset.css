@@ -76,12 +76,23 @@ table {
 }
 
 /* 9. Cegah teks tanpa spasi (URL panjang, dsb) merusak layout, TANPA
-      memotong kata normal di tengah. overflow-wrap: break-word bawaan
-      browser sering terlalu agresif dan memotong kata biasa (mis.
-      "Development" -> "Developmen" + "t") saat container sedikit sempit.
-      word-break: normal memastikan kata utuh selalu diprioritaskan wrap
-      ke baris baru; overflow-wrap: anywhere hanya jadi fallback saat kata
-      itu sendiri lebih lebar dari container-nya. */
+      memotong kata normal di tengah secara sembarangan.
+
+      Lapisan pertahanan (dari yang paling disukai ke fallback terakhir):
+      1. word-break: normal -> kata utuh selalu diprioritaskan wrap ke
+         baris baru dulu (bukan dipotong).
+      2. hyphens: auto -> jika satu kata itu sendiri (mis. "Development")
+         masih lebih lebar dari container-nya bahkan sendirian di satu
+         baris, browser memecahnya dengan tanda hubung pada titik suku
+         kata yang benar secara linguistik ("Develop-ment"), bukan
+         terpotong tanpa aturan di tengah huruf ("Developmen" + "t").
+      3. overflow-wrap: anywhere -> fallback paling akhir untuk teks
+         tanpa spasi yang truly tidak bisa dipecah dengan tanda hubung
+         (mis. URL panjang, token acak).
+
+      Catatan: hyphens:auto butuh atribut lang pada <html> (sudah ada,
+      lang="id") agar browser tahu aturan pemenggalan suku kata bahasa
+      Indonesia yang harus dipakai. */
 p,
 h1,
 h2,
@@ -90,6 +101,7 @@ h4,
 h5,
 h6 {
   word-break: normal;
+  hyphens: auto;
   overflow-wrap: anywhere;
 }
 
