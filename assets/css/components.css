@@ -16,8 +16,8 @@
   background-color: var(--color-surface);
   border-bottom: 1px solid transparent;
   transition: background-color var(--duration-base) var(--ease),
-              border-color var(--duration-base) var(--ease),
-              box-shadow var(--duration-base) var(--ease);
+    border-color var(--duration-base) var(--ease),
+    box-shadow var(--duration-base) var(--ease);
 }
 
 /* State: navbar berubah style saat discroll (dikendalikan main.js) */
@@ -71,16 +71,18 @@
   background-color: var(--color-ink);
   border-radius: 2px;
   transition: transform var(--duration-base) var(--ease),
-              opacity var(--duration-base) var(--ease);
+    opacity var(--duration-base) var(--ease);
 }
 
 /* Animasi hamburger → X saat menu terbuka */
 .navbar__toggle[aria-expanded="true"] span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
+
 .navbar__toggle[aria-expanded="true"] span:nth-child(2) {
   opacity: 0;
 }
+
 .navbar__toggle[aria-expanded="true"] span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
@@ -156,8 +158,8 @@
     opacity: 0;
     visibility: hidden;
     transition: max-height var(--duration-base) var(--ease),
-                opacity var(--duration-base) var(--ease),
-                visibility var(--duration-base) var(--ease);
+      opacity var(--duration-base) var(--ease),
+      visibility var(--duration-base) var(--ease);
   }
 
   /* Class ditambahkan via JS (main.js) saat toggle diklik */
@@ -298,6 +300,7 @@
    Footer — Responsif
    -------------------------------------------------------------------------- */
 @media (min-width: 600px) {
+
   .footer__links,
   .footer__contact,
   .footer__social {
@@ -342,7 +345,7 @@
   border: 1px solid transparent;
   cursor: pointer;
   transition: background-color var(--duration-base) var(--ease),
-              transform var(--duration-fast) var(--ease);
+    transform var(--duration-fast) var(--ease);
 }
 
 .btn:focus-visible {
@@ -357,6 +360,7 @@
   background-color: var(--color-accent-hover);
   color: var(--color-surface);
 }
+
 .btn--primary:hover {
   background-color: var(--color-accent-hover-dark);
   transform: translateY(-2px);
@@ -367,6 +371,7 @@
   color: var(--color-ink);
   border-color: var(--color-border);
 }
+
 .btn--secondary:hover {
   background-color: var(--color-surface);
 }
@@ -377,6 +382,7 @@
   color: var(--color-bg);
   border-color: rgba(var(--color-bg-rgb), 0.3);
 }
+
 .btn--secondary-inverse:hover {
   background-color: rgba(var(--color-bg-rgb), 0.08);
 }
@@ -433,8 +439,8 @@
   border-radius: var(--radius-lg);
   padding: var(--space-4);
   transition: transform var(--duration-base) var(--ease),
-              box-shadow var(--duration-base) var(--ease),
-              border-color var(--duration-base) var(--ease);
+    box-shadow var(--duration-base) var(--ease),
+    border-color var(--duration-base) var(--ease);
 }
 
 .card:hover {
@@ -667,7 +673,159 @@
 }
 
 /* ==========================================================================
-   10. SCROLL-REVEAL STATE
+   10. ACCORDION
+   Dipakai di halaman Layanan (daftar 6 layanan) dan Kontak (FAQ).
+   Base style shared di sini; override tampilan khusus per-halaman
+   (mis. grid 2-kolom desktop untuk Layanan) tetap di pages/services.css.
+
+   CATATAN IMPLEMENTASI: pakai native HTML5 <details>/<summary>, bukan
+   custom JS — perilaku buka/tutup sepenuhnya ditangani browser secara
+   native, tidak butuh file JS accordion terpisah.
+   ========================================================================== */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.accordion__item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.accordion__item[open] {
+  border-color: var(--color-accent);
+}
+
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-body);
+}
+
+.accordion__trigger::-webkit-details-marker {
+  display: none;
+}
+
+.accordion__trigger::marker {
+  content: "";
+}
+
+.accordion__trigger::after {
+  content: "+";
+  margin-left: auto;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--color-accent-hover);
+  flex-shrink: 0;
+  transition: transform var(--duration-base) var(--ease);
+}
+
+.accordion__item[open] .accordion__trigger::after {
+  transform: rotate(45deg);
+}
+
+.accordion__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  color: var(--color-accent-hover);
+}
+
+.accordion__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.accordion__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.accordion__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--color-ink);
+}
+
+.accordion__desc {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--color-ink-muted);
+}
+
+.accordion__content {
+  padding: 0 var(--space-4) var(--space-4) calc(var(--space-4) + var(--space-3) + 40px);
+}
+
+.accordion__content p {
+  color: var(--color-ink-muted);
+}
+
+.accordion__label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-ink);
+  margin-bottom: var(--space-1);
+}
+
+.accordion__list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.accordion__list li {
+  position: relative;
+  padding-left: var(--space-3);
+  color: var(--color-ink-muted);
+}
+
+.accordion__list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-hover);
+}
+
+.accordion__list li+li {
+  margin-top: 0;
+}
+
+/* Item tanpa .accordion__icon (mis. FAQ Kontak) ditandai dengan class
+   modifier .accordion--flat pada elemen <details>, agar tidak butuh
+   indentasi konten sebesar item dengan ikon (Layanan). Pakai class
+   eksplisit di HTML, bukan :has(), supaya kompatibel di browser lama
+   sekalipun (:has() gagal total/all-or-nothing jika tidak didukung). */
+.accordion__item.accordion--flat .accordion__content {
+  padding-left: var(--space-4);
+}
+
+@media (max-width: 599px) {
+  .accordion__content {
+    padding-left: var(--space-4);
+  }
+}
+
+/* ==========================================================================
+   11. SCROLL-REVEAL STATE
    Dipakai oleh animations.js (IntersectionObserver) di halaman yang
    men-load animations.js: Beranda, Tentang Kami, Portofolio & Klien.
    ========================================================================== */
@@ -675,7 +833,7 @@
   opacity: 0;
   transform: translateY(24px);
   transition: opacity var(--duration-base) var(--ease),
-              transform var(--duration-base) var(--ease);
+    transform var(--duration-base) var(--ease);
 }
 
 [data-reveal].is-visible {
@@ -688,5 +846,6 @@
     opacity: 1;
     transform: none;
     transition: none;
+
   }
 }

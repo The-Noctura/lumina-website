@@ -1,18 +1,16 @@
 /* ==========================================================================
    SERVICES.CSS
    Style KHUSUS halaman Layanan saja.
-   Style reusable (navbar, footer, btn, card, section-header) ada di
-   components.css — tidak diduplikasi di sini.
+   Style reusable (navbar, footer, btn, card, section-header, accordion)
+   ada di components.css — tidak diduplikasi di sini.
    Referensi: 03-layanan.md
 
    CATATAN IMPLEMENTASI ACCORDION:
-   Dipilih pendekatan native HTML5 <details>/<summary> (bukan custom JS),
-   sesuai opsi yang diizinkan di 03-layanan.md bagian "Catatan Desain".
-   Karena itu TIDAK ADA file JS accordion terpisah yang dibutuhkan —
-   perilaku buka/tutup sepenuhnya ditangani browser secara native.
-   Di desktop (>= 900px), seluruh item ditampilkan grid 2 kolom terbuka
-   (lihat media query di bawah) agar terasa seperti grid card, bukan
-   accordion — namun tetap 1 markup <details> yang sama untuk semua layar.
+   Base style .accordion (card, ikon +, konten) ada di components.css
+   sebagai shared component (dipakai juga oleh FAQ di Kontak). Di file
+   ini HANYA override yang spesifik halaman Layanan: grid 2-kolom di
+   desktop, supaya 6 item layanan tampil seperti grid card (bukan
+   accordion vertikal 1 kolom seperti FAQ Kontak).
    ========================================================================== */
 
 .page-header__subtitle {
@@ -24,138 +22,8 @@
 }
 
 /* ==========================================================================
-   2. ACCORDION / DAFTAR LAYANAN
+   2. ACCORDION — override khusus Layanan (grid 2 kolom di desktop)
    ========================================================================== */
-.accordion {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.accordion__item {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
-.accordion__item[open] {
-  border-color: var(--color-accent);
-}
-
-.accordion__trigger {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
-  cursor: pointer;
-  list-style: none;
-  font-family: var(--font-body);
-}
-
-.accordion__trigger::-webkit-details-marker {
-  display: none;
-}
-
-.accordion__trigger::marker {
-  content: "";
-}
-
-.accordion__trigger::after {
-  content: "+";
-  margin-left: auto;
-  font-family: var(--font-body);
-  font-weight: 300;
-  font-size: 1.75rem;
-  line-height: 1;
-  color: var(--color-accent-hover);
-  flex-shrink: 0;
-  transition: transform var(--duration-base) var(--ease);
-}
-
-.accordion__item[open] .accordion__trigger::after {
-  transform: rotate(45deg);
-}
-
-.accordion__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  color: var(--color-accent-hover);
-}
-
-.accordion__icon svg {
-  width: 24px;
-  height: 24px;
-}
-
-.accordion__title-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.accordion__title {
-  font-family: var(--font-display);
-  font-size: var(--fs-h3);
-  color: var(--color-ink);
-}
-
-.accordion__desc {
-  font-family: var(--font-body);
-  font-size: var(--fs-small);
-  color: var(--color-ink-muted);
-}
-
-.accordion__content {
-  padding: 0 var(--space-4) var(--space-4) calc(var(--space-4) + var(--space-3) + 40px);
-}
-
-.accordion__label {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: var(--fs-small);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--color-ink);
-  margin-bottom: var(--space-1);
-}
-
-.accordion__list {
-  list-style: none;
-  padding-left: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.accordion__list li {
-  position: relative;
-  padding-left: var(--space-3);
-  color: var(--color-ink-muted);
-}
-
-.accordion__list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: var(--color-accent-hover);
-}
-
-.accordion__list li + li {
-  margin-top: 0;
-}
-
-@media (max-width: 599px) {
-  .accordion__content {
-    padding-left: var(--space-4);
-  }
-}
-
-/* Desktop: layout grid 2 kolom, seluruh item tampil terbuka seperti card */
 @media (min-width: 900px) {
   .accordion {
     display: grid;
