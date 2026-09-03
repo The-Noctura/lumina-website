@@ -1,39 +1,45 @@
 /* ==========================================================================
    VARIABLES.CSS
    Design Tokens — Lumina Creative Studio
-   Sumber: 07-spesifikasi-teknis.md, bagian 2.3 (Design Tokens)
-   Semua nilai desain terpusat di sini sebagai CSS Custom Properties,
-   supaya tidak ada magic number tersebar di file lain.
+   Hasil REDESIGN "Minimalist Modern Curved" (filosofi "Diam tapi Berbicara").
 
-   Catatan: nilai warna di bawah adalah usulan awal (tema terracotta/kreatif
-   hangat). Sesuaikan lagi saat tahap desain visual jika ada brand guideline
-   final dari klien.
+   Seluruh token dari sistem lama (tema terracotta) SUDAH TIDAK BERLAKU dan
+   dihapus total dari file ini, termasuk namun tidak terbatas pada:
+   --color-bg, --color-ink, --color-ink-muted, --color-accent (nilai lama
+   #D6572E), --color-accent-soft (nilai lama), --color-border (nilai lama),
+   --radius-sm, --radius-md, --radius-lg, --font-display.
+
+   File lain (components.css, pages/*.css) akan dimigrasikan ke nama token
+   baru di bawah ini sebagai step terpisah — jangan referensikan nama token
+   lama di file manapun setelah migrasi selesai.
    ========================================================================== */
 
 :root {
   /* === COLOR === */
-  --color-bg: #FAF9F6;
-  --color-surface: #FFFFFF;
-  --color-ink: #1C1B19;
-  --color-ink-muted: #5C594F;
-  --color-primary: #1C1B19;      /* aksen gelap utama */
-  --color-accent: #D6572E;        /* aksen terracotta/oranye kreatif */
-  --color-accent-soft: #F2D9CE;
-  --color-border: #E6E2D8;
-  --color-danger: #C0392B;
-  --color-accent-hover: #B8481F;
-  --color-accent-hover-dark: #9A3D19;
+  --color-primary: #3A342B;
+  --color-secondary: #8A7B68;
+  --color-background: #F7F3EC;
+  --color-surface: #FFFDF9;
+  --color-text-primary: #3A342B;
+  --color-text-secondary: #6B6255;
+  --color-accent: #B57A5A;
+  --color-accent-hover: #8A4E30;
 
-  /* === COLOR — RGB CHANNELS (untuk rgba() dinamis, mis. box-shadow,
-     overlay, teks di atas latar gelap) — sinkron dengan --color-ink dan
-     --color-bg di atas. Jika nilai hex --color-ink/--color-bg berubah,
-     update juga channel RGB berikut agar tetap konsisten. === */
-  --color-ink-rgb: 28, 27, 25;
-  --color-bg-rgb: 250, 249, 246;
+  /* Token turunan — tidak eksplisit di brief desain awal, ditambahkan agar
+     komponen existing yang membutuhkannya tidak pecah. Verifikasi kontras
+     ulang kalau dipakai sebagai teks. */
+  --color-accent-soft: #EDE0D6;
+  --color-accent-hover-dark: #6B3B24;
+  --color-border: #E8E0D3;
+  --color-danger: #C0392B;
+
+  /* RGB channels untuk rgba() dinamis (box-shadow, overlay transparan) */
+  --color-primary-rgb: 58, 52, 43;
+  --color-background-rgb: 247, 243, 236;
 
   /* === TYPOGRAPHY === */
-  --font-display: 'Fraunces', serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Fraunces', 'Georgia', serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 
   --fs-h1: clamp(2rem, 5vw, 4.5rem);
@@ -41,8 +47,10 @@
   --fs-h3: clamp(1.5rem, 3vw, 2rem);
   --fs-body: 1rem;
   --fs-small: 0.875rem;
+  --font-size-display: clamp(3rem, 7vw, 6.5rem);
 
-  /* === SPACING (8px base scale) === */
+  /* === SPACING (basis 8px, tidak berubah dari sistem lama) === */
+  --spacing-unit: 8px;
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
@@ -54,12 +62,18 @@
 
   /* === LAYOUT === */
   --container-max: 1200px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 24px;
+  --border-radius-lg: 32px;
+  --border-radius-xl: 48px;
+
+  /* === SHADOW === */
+  --shadow-sm: 0 2px 8px rgba(58, 52, 43, 0.06);
+  --shadow-md: 0 16px 32px rgba(58, 52, 43, 0.10);
 
   /* === TRANSITION === */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 150ms;
   --duration-base: 300ms;
+  --transition-default: 450ms cubic-bezier(0.16, 1, 0.3, 1);
 }

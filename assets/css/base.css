@@ -3,12 +3,15 @@
    Typography & elemen dasar (body, h1-h6, a, dll)
    Semua nilai warna/font/spacing WAJIB lewat var(--nama-variabel) dari
    variables.css — tidak ada nilai hardcode di file ini.
+
+   Dimigrasikan ke token redesign "Minimalist Modern Curved" —
+   lihat variables.css untuk daftar lengkap token baru.
    ========================================================================== */
 
 /* === BODY === */
 body {
-  background-color: var(--color-bg);
-  color: var(--color-ink);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
   font-family: var(--font-body);
   font-size: var(--fs-body);
   font-weight: 400;
@@ -22,10 +25,13 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-display);
-  color: var(--color-ink);
+  font-family: var(--font-heading);
+  color: var(--color-text-primary);
   font-weight: 600;
   line-height: 1.2;
+  word-break: normal;
+  hyphens: auto;
+  overflow-wrap: anywhere;
 }
 
 h1 {
@@ -54,9 +60,12 @@ h6 {
 /* === PARAGRAPH === */
 p {
   font-family: var(--font-body);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--fs-body);
   line-height: 1.6;
+  word-break: normal;
+  hyphens: auto;
+  overflow-wrap: anywhere;
 }
 
 p + p {
@@ -65,25 +74,25 @@ p + p {
 
 small {
   font-size: var(--fs-small);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
 }
 
 /* === LINKS === */
 a {
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
   text-decoration: none;
   transition: color var(--duration-base) var(--ease);
 }
 
 a:hover {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 /* === LISTS === */
 ul,
 ol {
   font-family: var(--font-body);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   padding-left: var(--space-3);
 }
 
@@ -101,7 +110,7 @@ li + li {
 
 /* === IMAGES === */
 img {
-  border-radius: var(--radius-sm);
+  border-radius: var(--border-radius-sm);
 }
 
 /* === CODE / MONO (opsional, mengikuti --font-mono yang tersedia) === */
@@ -112,7 +121,7 @@ kbd {
   font-size: var(--fs-small);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  border-radius: var(--border-radius-sm);
 }
 
 code,
@@ -135,7 +144,7 @@ hr {
 /* === SELECTION === */
 ::selection {
   background-color: var(--color-accent-soft);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 /* ==========================================================================
@@ -145,9 +154,9 @@ hr {
 
 /* Fokus keyboard harus jelas terlihat — jangan pernah di-display:none-kan */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-accent-hover);
   outline-offset: 2px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--border-radius-sm);
 }
 
 /* Hormati preferensi pengguna yang sensitif terhadap animasi/gerakan */

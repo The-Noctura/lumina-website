@@ -1,38 +1,51 @@
 /* ==========================================================================
    SERVICES.CSS
    Style KHUSUS halaman Layanan saja.
-   Style reusable (navbar, footer, btn, card, section-header, accordion)
-   ada di components.css — tidak diduplikasi di sini.
-   Referensi: 03-layanan.md
+   Style reusable (navbar, footer, btn, card, section-header, page-header,
+   cta-banner, accordion) ada di components.css — tidak diduplikasi di sini.
+   Referensi: 03-layanan.md, 01-redesign-concept.md, 02-redesign-spec.md
+
+   Dimigrasikan ke token redesign "Minimalist Modern Curved" — lihat
+   variables.css untuk daftar lengkap token baru.
+
+   Prinsip halaman ini: SENGAJA dibuat paling tenang/fungsional di seluruh
+   situs — tidak ada elemen yang "berteriak" karena tujuannya adalah
+   kejelasan referensi (lookup 6 layanan), bukan storytelling. Satu-satunya
+   pengecualian: judul halaman (.page-header__title), sedikit lebih besar
+   dari skala default non-Beranda.
 
    CATATAN IMPLEMENTASI ACCORDION:
-   Base style .accordion (card, ikon +, konten) ada di components.css
-   sebagai shared component (dipakai juga oleh FAQ di Kontak). Di file
-   ini HANYA override yang spesifik halaman Layanan: grid 2-kolom di
-   desktop, supaya 6 item layanan tampil seperti grid card (bukan
-   accordion vertikal 1 kolom seperti FAQ Kontak).
+   Base style .accordion (card, ikon +, konten, border [open]) ada di
+   components.css sebagai shared component (dipakai juga oleh FAQ di
+   Kontak) — TIDAK diduplikasi di sini. Di file ini HANYA override yang
+   spesifik halaman Layanan: grid 2-kolom di desktop, supaya 6 item
+   layanan tampil seperti grid card (bukan accordion vertikal 1 kolom
+   seperti FAQ Kontak).
    ========================================================================== */
 
-.page-header__subtitle {
-  font-family: var(--font-body);
-  font-size: var(--fs-body);
-  color: var(--color-ink-muted);
-  max-width: 60ch;
-  margin-top: var(--space-1);
+/* ==========================================================================
+   1. PAGE HEADER — SATU-SATUNYA pengecualian tenang di halaman ini
+   Base .page-header__title sudah ada di components.css
+   (clamp(2.25rem, 5.5vw, 4.75rem)) — override di sini menang lewat urutan
+   cascade (components.css dimuat sebelum services.css), tidak perlu
+   !important. Skala SEDIKIT lebih besar dari default non-Beranda, tapi
+   tetap jauh di bawah --font-size-display Hero Beranda.
+   ========================================================================== */
+.page-header__title {
+  font-size: clamp(2.5rem, 5.5vw, 5rem);
 }
 
 /* ==========================================================================
    2. ACCORDION — override khusus Layanan (grid 2 kolom di desktop)
+   Base style .accordion tetap di components.css, TIDAK diduplikasi di
+   sini. Scope ke .services-list supaya tidak mempengaruhi FAQ Kontak
+   (yang memuat .accordion di luar konteks .services-list).
    ========================================================================== */
 @media (min-width: 900px) {
-  .accordion {
+  .services-list .accordion {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-3);
-  }
-
-  .accordion__item {
-    border-radius: var(--radius-lg);
+    gap: var(--space-4);
   }
 }
 
@@ -45,7 +58,6 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-4);
-  counter-reset: none;
 }
 
 .process__step {
@@ -58,10 +70,10 @@
   position: relative;
 }
 
-.process__step + .process__step {
-  margin-top: 0;
-}
-
+/* Angka besar diubah dari warna solid accent MENJADI outline/stroke tipis
+   dengan --color-secondary — supaya tidak bersaing dengan accordion di
+   atasnya sebagai elemen utama halaman (konsisten dengan prinsip halaman
+   ini: paling tenang/fungsional di seluruh situs). */
 .process__number {
   display: inline-flex;
   align-items: center;
@@ -69,26 +81,31 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  /* Aksesibilitas: --color-accent murni vs teks putih hanya 3.99:1
-     (gagal AA 4.5:1). --color-accent-hover memenuhi 5.27:1. */
-  background-color: var(--color-accent-hover);
-  color: var(--color-surface);
-  font-family: var(--font-display);
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-secondary);
+  font-family: var(--font-heading);
   font-size: var(--fs-h3);
   font-weight: 600;
   margin-bottom: var(--space-1);
 }
 
+/* Fallback untuk browser tanpa dukungan -webkit-text-stroke */
+@supports not (-webkit-text-stroke: 1px black) {
+  .process__number {
+    color: var(--color-secondary);
+  }
+}
+
 .process__title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--fs-h3);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 .process__desc {
   font-family: var(--font-body);
   font-size: var(--fs-small);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
 }
 
 @media (max-width: 899px) {
@@ -105,6 +122,9 @@
 
 /* ==========================================================================
    4. MENGAPA MEMILIH KAMI (VALUE PROPOSITION)
+   Tetap format checklist sederhana, TANPA card wrapper — whitespace
+   dibiarkan bekerja sebagai elemen desain aktif (prinsip 3, redesign
+   concept). Jangan bungkus tiap item dengan .card.
    ========================================================================== */
 .why-us__item {
   display: flex;
@@ -114,7 +134,7 @@
 }
 
 .why-us__item p {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   font-weight: 500;
   margin: 0;
 }
@@ -132,69 +152,8 @@
   flex-shrink: 0;
 }
 
-@media (max-width: 899px) {
-  .why-us__item {
-    grid-column: span 12;
-  }
-}
-
-/* ==========================================================================
-   5. PAGE HEADER (dipakai bersama di halaman non-Beranda)
-   ========================================================================== */
-.page-header {
-  padding-top: var(--space-5);
-  padding-bottom: var(--space-4);
-}
-
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-  font-size: var(--fs-small);
-  color: var(--color-ink-muted);
-  margin-bottom: var(--space-2);
-}
-
-.breadcrumb a {
-  color: var(--color-ink-muted);
-}
-
-.breadcrumb a:hover {
-  color: var(--color-accent-hover);
-}
-
-.breadcrumb [aria-current="page"] {
-  color: var(--color-ink);
-  font-weight: 600;
-}
-
-.page-header__title {
-  margin-bottom: var(--space-1);
-}
-
-/* ==========================================================================
-   6. CTA BANNER (dipakai bersama di halaman non-Beranda)
-   ========================================================================== */
-.cta-banner {
-  background-color: var(--color-accent-soft);
-}
-
-.cta-banner__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-3);
-  text-align: center;
-}
-
-.cta-banner__title {
-  color: var(--color-ink);
-  max-width: 50ch;
-}
-
 /* Catatan: halaman Layanan TIDAK memuat animations.js (sesuai pembagian
-   resmi di 07-spesifikasi-teknis.md bagian 5 — animations.js hanya untuk
-   Beranda, Tentang Kami, Portofolio & Klien), sehingga atribut
-   [data-reveal] sengaja tidak dipakai di sini — memakainya tanpa
-   IntersectionObserver yang berjalan akan membuat elemen permanen
-   tersembunyi (opacity: 0). */
+   resmi — animations.js hanya untuk Beranda, Tentang Kami, Portofolio &
+   Klien), sehingga atribut [data-reveal] sengaja tidak dipakai di sini —
+   memakainya tanpa IntersectionObserver yang berjalan akan membuat
+   elemen permanen tersembunyi (opacity: 0). */

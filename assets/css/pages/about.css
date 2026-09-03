@@ -18,12 +18,12 @@
   align-items: center;
   gap: var(--space-1);
   font-size: var(--fs-small);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   margin-bottom: var(--space-2);
 }
 
 .breadcrumb a {
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
 }
 
 .breadcrumb a:hover {
@@ -31,7 +31,7 @@
 }
 
 .breadcrumb [aria-current="page"] {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   font-weight: 600;
 }
 
@@ -49,6 +49,10 @@
 
 /* ==========================================================================
    2. CERITA KAMI
+   Redesign "Minimalist Modern Curved": layout diubah dari 50-50 (col-span-6/
+   col-span-6) menjadi asimetris 5:7 — teks lebih sempit, foto lebih lebar.
+   Titik fokus halaman ini (bukan lewat ukuran seperti Hero Beranda,
+   melainkan lewat komposisi tidak simetris + pull-quote + clip-path foto).
    ========================================================================== */
 .story__text {
   display: flex;
@@ -56,11 +60,27 @@
   justify-content: center;
 }
 
-.story__lead {
-  font-family: var(--font-display);
-  font-size: var(--fs-h3);
-  color: var(--color-ink);
-  line-height: 1.4;
+/* Override span generik dari layout.css (col-span-6/col-span-6 di markup)
+   supaya rasio jadi 5:7 di desktop, tanpa mengubah class .col-span-* global.
+   Di bawah 900px, layout.css sudah men-stack col-span-6 ke span 12 — di sini
+   cukup pastikan urutan DOM (teks dulu, baru foto) sudah benar di HTML. */
+@media (min-width: 900px) {
+  .story .col-span-6.story__text {
+    grid-column: span 5;
+  }
+
+  .story .col-span-6.story__image {
+    grid-column: span 7;
+  }
+}
+
+/* Menggantikan .story__lead lama — elemen tipografis mandiri mirip
+   pull-quote, ukuran mendekati heading (--fs-h2), bukan body-text besar. */
+.story__pullquote {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h2);
+  color: var(--color-text-primary);
+  line-height: 1.3;
   margin-bottom: var(--space-3);
 }
 
@@ -68,6 +88,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: var(--border-radius-xl);
+  /* Clip-path lembut pada SATU sudut saja (kiri-bawah) sebagai sentuhan
+     curved tambahan — bukan pengganti border-radius, melainkan efek di
+     atasnya. Sudut lain tetap mengikuti border-radius normal. */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 12% 100%, 0 88%);
 }
 
 @media (max-width: 899px) {
@@ -78,15 +103,19 @@
 
 /* ==========================================================================
    3. VISI & MISI
+   SENGAJA tetap tenang — section Cerita Kami di atasnya sudah jadi fokus
+   halaman. Radius --border-radius-md, background netral (--color-surface,
+   sudah default dari .card di components.css), tanpa warna accent mencolok.
    ========================================================================== */
 .vision-mission__card {
   height: 100%;
+  border-radius: var(--border-radius-md);
 }
 
 .vision-mission__text {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--fs-h3);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   line-height: 1.4;
 }
 
@@ -101,7 +130,7 @@
 .vision-mission__list li {
   position: relative;
   padding-left: var(--space-3);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   line-height: 1.6;
 }
 
@@ -119,6 +148,9 @@
 
 /* ==========================================================================
    4. NILAI-NILAI KAMI (CORE VALUES)
+   Section PALING TENANG di halaman ini. 3 kartu pertama netral, hanya kartu
+   keempat ("Berdampak") ditandai .card--value--highlight secara manual di
+   HTML (bukan :last-child, supaya aman kalau urutan konten berubah nanti).
    ========================================================================== */
 .values__col {
   display: flex;
@@ -127,6 +159,14 @@
 .card--value {
   width: 100%;
   text-align: left;
+}
+
+.card--value .card__icon {
+  color: var(--color-text-secondary);
+}
+
+.card--value--highlight .card__icon {
+  color: var(--color-accent-hover);
 }
 
 @media (max-width: 899px) {
@@ -147,7 +187,7 @@
    di components.css (dipakai lintas halaman: Beranda, Tentang, Portofolio)
    ========================================================================== */
 .stats {
-  background-color: var(--color-ink);
+  background-color: var(--color-primary);
 }
 
 .stats .section-header__eyebrow {
@@ -155,7 +195,7 @@
 }
 
 .stats .section-header__title {
-  color: var(--color-bg);
+  color: var(--color-background);
 }
 
 .stats__grid {
@@ -212,7 +252,7 @@
   font-family: var(--font-body);
   font-weight: 600;
   font-size: var(--fs-small);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 @media (max-width: 899px) {
@@ -243,7 +283,7 @@
 }
 
 .cta-banner__title {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 /* [data-reveal] state sekarang didefinisikan di components.css

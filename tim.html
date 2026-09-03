@@ -18,6 +18,7 @@
     <meta property="og:image" content="assets/images/og-cover.jpg" />
 
     <link rel="icon" href="assets/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/images/favicon-180.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -123,50 +124,52 @@
             <h2 class="section-header__title">Tokoh Kunci di Lumina</h2>
           </div>
 
-          <div class="grid">
-            <div class="col-span-4">
-              <div class="card card--team">
-                <img
-                  src="https://placehold.co/400x400/1C1B19/FAF9F6?text=Raka+Pratama"
-                  alt="Foto Raka Pratama, Founder & Creative Director Lumina Creative Studio"
-                  loading="lazy"
-                  width="400"
-                  height="400"
-                  class="card--team__photo"
-                />
-                <h3 class="card__title">Raka Pratama</h3>
-                <p class="card--team__position">Founder & Creative Director</p>
-                <p class="card__desc">
-                  "Memimpin visi kreatif Lumina sejak 2018."
-                </p>
-                <a
-                  href="https://instagram.com/luminacreative.id"
-                  target="_blank"
-                  rel="noopener"
-                  class="card--team__social"
-                  aria-label="Kunjungi profil sosial media Raka Pratama"
+          <!-- Founder — sendirian di baris pertama, mini-Hero -->
+          <div class="team-grid__founder-row">
+            <div class="card card--team card--team--founder">
+              <img
+                src="https://placehold.co/500x500/1C1B19/FAF9F6?text=Raka+Pratama"
+                alt="Foto Raka Pratama, Founder & Creative Director Lumina Creative Studio"
+                loading="lazy"
+                width="500"
+                height="500"
+                class="card--team__photo"
+              />
+              <h3 class="card__title">Raka Pratama</h3>
+              <p class="card--team__position">Founder & Creative Director</p>
+              <p class="card__desc card--team__quote">
+                "Memimpin visi kreatif Lumina sejak 2018."
+              </p>
+              <a
+                href="https://instagram.com/luminacreative.id"
+                target="_blank"
+                rel="noopener"
+                class="card--team__social"
+                aria-label="Instagram Raka Pratama"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
                 >
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <rect x="2" y="2" width="20" height="20" rx="5"></rect>
-                    <path
-                      d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
-                    ></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                  </svg>
-                </a>
-              </div>
+                  <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+                  <path
+                    d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                  ></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
             </div>
+          </div>
 
+          <!-- 4 anggota lain — grid standar, tanpa hierarki di antara mereka -->
+          <div class="team-grid__members-row grid">
             <div class="col-span-4">
               <div class="card card--team">
                 <img
@@ -187,7 +190,7 @@
                   target="_blank"
                   rel="noopener"
                   class="card--team__social"
-                  aria-label="Kunjungi profil sosial media Amelia Putri"
+                  aria-label="Instagram Amelia Putri"
                 >
                   <svg
                     width="20"
@@ -230,7 +233,7 @@
                   target="_blank"
                   rel="noopener"
                   class="card--team__social"
-                  aria-label="Kunjungi profil sosial media Dimas Aditya"
+                  aria-label="Instagram Dimas Aditya"
                 >
                   <svg
                     width="20"
@@ -274,7 +277,7 @@
                   target="_blank"
                   rel="noopener"
                   class="card--team__social"
-                  aria-label="Kunjungi profil sosial media Nadia Salsabila"
+                  aria-label="Instagram Nadia Salsabila"
                 >
                   <svg
                     width="20"
@@ -317,7 +320,7 @@
                   target="_blank"
                   rel="noopener"
                   class="card--team__social"
-                  aria-label="Kunjungi profil sosial media Farhan Maulana"
+                  aria-label="Instagram Farhan Maulana"
                 >
                   <svg
                     width="20"
@@ -339,18 +342,9 @@
                 </a>
               </div>
             </div>
-
-            <div class="col-span-4">
-              <div class="card card--team card--team-more">
-                <div class="card--team-more__inner">
-                  <span class="card--team-more__number">19+</span>
-                  <p class="card--team-more__label">
-                    Didukung oleh 19+ talenta kreatif lainnya
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
+
+          <p class="team-note">Didukung oleh 19+ talenta kreatif lainnya.</p>
         </div>
       </section>
 

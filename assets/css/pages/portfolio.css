@@ -7,10 +7,17 @@
    about.css tidak di-load di halaman ini (tiap halaman hanya load
    pages/<nama>.css miliknya sendiri, sesuai arsitektur di 07).
    Referensi: 04-portofolio-klien.md
+
+   Dimigrasikan ke token redesign "Minimalist Modern Curved" (lihat
+   variables.css untuk daftar lengkap token baru) DAN diredesain sesuai
+   02-redesign-spec.md — bagian Grid Portofolio Featured Card, Filter
+   Kategori Industri, Logo Wall Klien, Testimonial asimetris.
    ========================================================================== */
 
 /* ==========================================================================
    1. PAGE HEADER (shared pattern lintas halaman non-Beranda)
+   Skala .page-header__title (clamp menengah) sudah didefinisikan di
+   components.css — TIDAK diduplikasi di sini, cukup migrasi warna/spacing.
    ========================================================================== */
 .page-header {
   padding-top: var(--space-5);
@@ -22,12 +29,12 @@
   align-items: center;
   gap: var(--space-1);
   font-size: var(--fs-small);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   margin-bottom: var(--space-2);
 }
 
 .breadcrumb a {
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
 }
 
 .breadcrumb a:hover {
@@ -35,7 +42,7 @@
 }
 
 .breadcrumb [aria-current="page"] {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   font-weight: 600;
 }
 
@@ -46,12 +53,14 @@
 .page-header__subtitle {
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   max-width: 60ch;
 }
 
 /* ==========================================================================
    2. FILTER KATEGORI INDUSTRI
+   Redesign: pill kecil, state aktif pakai warna TEKS (bukan background
+   solid) supaya tidak bersaing dengan grid featured di bawahnya.
    ========================================================================== */
 .portfolio-filter__bar {
   display: flex;
@@ -63,10 +72,10 @@
   font-family: var(--font-body);
   font-size: var(--fs-small);
   font-weight: 600;
-  color: var(--color-ink-muted);
-  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  background-color: transparent;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--border-radius-sm);
   padding: var(--space-1) var(--space-3);
   cursor: pointer;
   transition: background-color var(--duration-fast) var(--ease),
@@ -75,19 +84,24 @@
 }
 
 .portfolio-filter__btn:hover {
-  border-color: var(--color-accent);
-  color: var(--color-ink);
+  border-color: var(--color-accent-hover);
+  color: var(--color-text-primary);
 }
 
 .portfolio-filter__btn.is-active {
-  /* Aksesibilitas: --color-accent murni vs putih hanya 3.99:1 (gagal AA). */
-  background-color: var(--color-accent-hover);
+  /* Teks accent-hover (bukan background solid) — kontras 5.68-5.87:1 vs
+     background/surface, lolos AA. Background tetap transparan supaya
+     tenang, tidak bersaing dengan grid portofolio featured di bawahnya. */
+  color: var(--color-accent-hover);
   border-color: var(--color-accent-hover);
-  color: var(--color-surface);
+  background-color: transparent;
 }
 
 /* ==========================================================================
    3. GRID PORTOFOLIO / CARD--PORTFOLIO
+   Redesign: satu kartu ("Kopi Senja Nusantara") jadi featured (span 8),
+   dipasangkan kartu langsung setelahnya (span 4) di baris pertama; 3
+   kartu sisanya tetap span 4 seragam di baris kedua.
    ========================================================================== */
 .card--portfolio {
   padding: 0;
@@ -104,6 +118,7 @@
   width: 100%;
   height: 240px;
   object-fit: cover;
+  border-radius: var(--border-radius-md);
 }
 
 .card--portfolio__badge {
@@ -116,7 +131,7 @@
   font-size: var(--fs-small);
   font-weight: 700;
   padding: 0.25rem var(--space-2);
-  border-radius: var(--radius-sm);
+  border-radius: var(--border-radius-sm);
 }
 
 .card--portfolio .card__title {
@@ -128,9 +143,29 @@
   padding: var(--space-1) var(--space-3) var(--space-3);
 }
 
+/* --- Featured card (satu-satunya per grid) --- */
+#portfolioGrid .card--portfolio--featured {
+  grid-column: span 8;
+  padding: var(--space-5);
+}
+
+#portfolioGrid .card--portfolio--featured img {
+  border-radius: var(--border-radius-xl);
+}
+
+/* Kartu langsung setelah featured = pasangannya di baris pertama */
+#portfolioGrid .card--portfolio--featured + .card--portfolio {
+  grid-column: span 4;
+}
+
 @media (max-width: 899px) {
   .card--portfolio {
     grid-column: span 6;
+  }
+
+  #portfolioGrid .card--portfolio--featured,
+  #portfolioGrid .card--portfolio--featured + .card--portfolio {
+    grid-column: span 12;
   }
 }
 
@@ -142,6 +177,8 @@
 
 /* ==========================================================================
    4. LOGO WALL KLIEN
+   Elemen paling "diam" di halaman: grayscale + opacity dikurangi secara
+   default, full-color saat hover.
    ========================================================================== */
 .logo-wall {
   background-color: var(--color-surface);
@@ -157,9 +194,8 @@
 
 .logo-wall__grid img {
   filter: grayscale(100%);
-  opacity: 0.7;
-  transition: filter var(--duration-base) var(--ease),
-              opacity var(--duration-base) var(--ease);
+  opacity: 0.6;
+  transition: filter var(--transition-default), opacity var(--transition-default);
 }
 
 .logo-wall__grid img:hover {
@@ -182,16 +218,26 @@
 /* ==========================================================================
    5. TESTIMONI KLIEN
    .testimonial base ada di components.css. Di sini hanya override khusus
-   halaman ini (kutipan lebih besar memakai --fs-h3, bukan --fs-body seperti
-   default, dan stacking di mobile).
+   halaman ini: kutipan lebih besar (--fs-h3), dan asimetri 7:5 antara
+   testimoni pertama (.testimonial--featured) vs kedua, sama seperti pola
+   di Beranda.
    ========================================================================== */
 .testimonial .testimonial__quote {
   font-size: var(--fs-h3);
   font-style: normal;
 }
 
+.testimonials__grid .testimonial--featured {
+  grid-column: span 7;
+}
+
+.testimonials__grid .testimonial:not(.testimonial--featured) {
+  grid-column: span 5;
+}
+
 @media (max-width: 899px) {
-  .testimonial {
+  .testimonials__grid .testimonial--featured,
+  .testimonials__grid .testimonial:not(.testimonial--featured) {
     grid-column: span 12;
   }
 }
@@ -202,7 +248,7 @@
    hanya memuat file pages/<nama>.css miliknya sendiri (bukan shared file).
    ========================================================================== */
 .stats {
-  background-color: var(--color-ink);
+  background-color: var(--color-primary);
 }
 
 .stats__grid {
@@ -234,7 +280,7 @@
 }
 
 .cta-banner__title {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   max-width: 50ch;
 }
 

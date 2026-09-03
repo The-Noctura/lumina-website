@@ -9,20 +9,30 @@
 
 /* ------------------------------------------------------------
    CATATAN KOMPONEN REUSABLE
-   .stat-counter, .testimonial, dan [data-reveal] sekarang
-   didefinisikan di components.css (dipakai lintas halaman:
-   Beranda, Tentang Kami, Portofolio & Klien). File ini hanya
-   berisi hal yang spesifik untuk Beranda, misalnya modifier
-   .stat-counter--inverse.stat-counter--accent yang dipakai di
-   Trust Bar (lihat components.css bagian 8).
+   .stat-counter, .testimonial, dan [data-reveal] didefinisikan
+   di components.css (dipakai lintas halaman: Beranda, Tentang
+   Kami, Portofolio & Klien). File ini hanya berisi hal yang
+   spesifik untuk Beranda — misalnya penandaan satu instance
+   .stat-counter--highlight pada stat "150+" di Trust Bar (class
+   ditandai langsung di markup HTML index.html, style-nya berasal
+   dari components.css). Modifier lama .stat-counter--accent
+   (versi redesign lama yang mewarnai SEMUA angka) sudah dihapus
+   total dan tidak dipakai lagi di mana pun.
    ------------------------------------------------------------ */
 
 /* ------------------------------------------------------------
    2. HERO SECTION
    ------------------------------------------------------------ */
+/* ==========================================================================
+   HERO SECTION (Beranda)
+   Satu-satunya titik paling berani secara visual di seluruh situs.
+   Layout asimetris 5fr:7fr, headline pakai --font-size-display.
+   Referensi: 02-redesign-spec.md — bagian Hero (Beranda)
+   ========================================================================== */
+
 .hero {
-  padding-block: var(--space-7) var(--space-6);
-  background-color: var(--color-bg);
+  padding-block: var(--space-6);
+  overflow: hidden; /* jaga agar efek "bleed" visual tidak memicu scrollbar horizontal */
 }
 
 .hero__inner {
@@ -32,47 +42,100 @@
   align-items: center;
 }
 
+/* --------------------------------------------------------------------------
+   CONTENT (kolom teks)
+   -------------------------------------------------------------------------- */
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
 .hero__headline {
-  font-family: var(--font-display);
-  font-size: var(--fs-h1);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-display); /* satu-satunya elemen sebesar ini di situs */
   line-height: 1.05;
-  color: var(--color-ink);
-  margin-bottom: var(--space-3);
+  color: var(--color-text-primary);
+  margin: 0;
 }
 
 .hero__subheadline {
+  font-family: var(--font-body);
   font-size: var(--fs-body);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary); /* kontras 5.23:1 terhadap --color-background, lolos AA */
   max-width: 46ch;
-  margin-bottom: var(--space-4);
+  line-height: 1.6;
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+/* Hanya .btn--primary yang boleh berwarna accent (sudah otomatis dari
+   components.css). .btn--secondary di sini SENGAJA tidak diberi override
+   warna apapun supaya tetap netral — satu fokus, tombol kedua mengalah. */
+
+/* --------------------------------------------------------------------------
+   VISUAL (kolom gambar)
+   -------------------------------------------------------------------------- */
+.hero__visual {
+  width: 100%;
 }
 
 .hero__visual img {
+  display: block;
   width: 100%;
   height: auto;
-  border-radius: var(--radius-lg);
-  display: block;
+  border-radius: var(--border-radius-xl);
+  object-fit: cover;
 }
 
+/* --------------------------------------------------------------------------
+   RESPONSIVE — asimetri hanya berlaku >= 900px
+   Di bawah 900px: stack full-width, urutan tetap content dulu baru visual
+   (urutan DOM index.html sudah benar: .hero__content sebelum .hero__visual)
+   -------------------------------------------------------------------------- */
 @media (min-width: 900px) {
   .hero__inner {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-    gap: var(--space-6);
+    grid-template-columns: 5fr 7fr;
+    gap: var(--space-6); /* lebih lega dari gap grid standar --space-4 */
+    align-items: center;
+  }
+
+  .hero__content {
+    grid-column: 1;
+  }
+
+  .hero__visual {
+    grid-column: 2;
   }
 }
+
+@media (min-width: 1200px) {
+  .hero__inner {
+    gap: var(--space-7);
+  }
+
+  /* Efek "bleed" tipis — visual terasa sedikit melebihi grid, bukan
+     terkurung rapi dalam container seperti sistem lama. */
+  .hero__visual {
+    margin-right: calc(var(--space-4) * -1);
+  }
+}
+
+/* prefers-reduced-motion untuk data-reveal sudah ditangani secara global
+   di base.css dan components.css ([data-reveal] transition-duration
+   dimatikan via !important) — tidak perlu override tambahan di sini. */
 
 /* ------------------------------------------------------------
    3. STATISTIK SINGKAT (TRUST BAR)
    ------------------------------------------------------------ */
 .trust-bar {
   padding-block: var(--space-5);
-  background-color: var(--color-ink);
+  background-color: var(--color-primary);
 }
 
 .trust-bar__grid {
@@ -85,9 +148,13 @@
   text-align: center;
 }
 
-/* Warna teks stat-counter di section ini diatur lewat modifier
-   .stat-counter--inverse.stat-counter--accent pada markup HTML
-   (lihat components.css bagian 8), bukan override di sini. */
+/* Section ini SENGAJA dibuat tenang — grid 4 kolom simetris standar,
+   TIDAK ada perubahan struktural. Dari 4 stat, hanya "150+" (Proyek
+   Selesai) yang menonjol lewat class .stat-counter--highlight pada
+   markup HTML (lihat components.css) — 3 stat lain render netral
+   (--color-background via .stat-counter--inverse). Modifier lama
+   .stat-counter--accent (mewarnai SEMUA angka sekaligus) sudah
+   dihapus total dari sistem ini, jangan dipakai lagi. */
 
 @media (min-width: 400px) {
   .trust-bar__grid {
@@ -133,6 +200,8 @@
    perkiraan ini. */
 .services-preview__grid .card__title {
   font-size: clamp(1.35rem, 2.2vw, 1.6rem);
+  /* font-family diwarisi dari .card__title base di components.css,
+     sudah var(--font-heading) — tidak perlu didefinisikan ulang di sini. */
 }
 
 /* Perbaikan responsif: layout.css resmi hanya stack col-span-4/6 di mobile,
@@ -171,15 +240,15 @@
   font-size: var(--fs-small);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   margin-bottom: var(--space-4);
 }
 
 .marquee {
   width: 100%;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, var(--color-ink) 10%, var(--color-ink) 90%, transparent);
-  mask-image: linear-gradient(90deg, transparent, var(--color-ink) 10%, var(--color-ink) 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, var(--color-primary) 10%, var(--color-primary) 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, var(--color-primary) 10%, var(--color-primary) 90%, transparent);
 }
 
 .marquee__track {
@@ -189,11 +258,15 @@
   animation: marquee-scroll 24s linear infinite;
 }
 
+/* Warna teks marquee diturunkan kontrasnya jadi --color-text-secondary
+   (BUKAN --color-text-primary/ink solid seperti versi lama) — supaya
+   section ini terasa sebagai elemen pendukung tenang, tidak bersaing
+   dengan Hero yang sudah jadi fokus utama halaman. */
 .marquee__item {
   flex: 0 0 auto;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--fs-h3);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   white-space: nowrap;
 }
 
@@ -228,14 +301,14 @@
 .about-snippet__visual img {
   width: 100%;
   height: auto;
-  border-radius: var(--radius-lg);
+  border-radius: var(--border-radius-lg);
   display: block;
 }
 
 .about-snippet__text {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--fs-h3);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   line-height: 1.3;
   margin-block: var(--space-2) var(--space-4);
 }
@@ -262,9 +335,22 @@
   margin-top: var(--space-5);
 }
 
+/* Asimetri "napas kedua" setelah Hero — testimoni pertama diberi
+   class .testimonial--featured di HTML dan melebar (span 7), testimoni
+   kedua tetap default (span 5). Diterapkan (bukan fallback 6/6) sesuai
+   rekomendasi eksplisit di 02-redesign-spec.md. Stack simetris di
+   bawah 900px, tidak ada asimetri di breakpoint sempit. */
 @media (min-width: 900px) {
   .testimonials__grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .testimonials__grid .testimonial--featured {
+    grid-column: span 7;
+  }
+
+  .testimonials__grid .testimonial:not(.testimonial--featured) {
+    grid-column: span 5;
   }
 }
 
@@ -284,8 +370,12 @@
   gap: var(--space-3);
 }
 
+/* CTA penutup WAJIB tenang — fs-h2 (BUKAN --font-size-display Hero),
+   satu tombol .btn--primary. Selector di-scope eksplisit ke
+   .cta-banner__headline (bukan turunan dari .hero), jadi tidak ada
+   leakage specificity dari style Hero meski keduanya child <main>. */
 .cta-banner__headline {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--fs-h2);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }

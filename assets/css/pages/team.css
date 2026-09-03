@@ -1,24 +1,29 @@
 /* ==========================================================================
    TEAM.CSS
    Style khusus halaman Tim Kami (tim.html)
-   Referensi: 05-tim-kami.md, 07-spesifikasi-teknis.md
-   Style reusable (card, section-header, cta-banner, dll) tetap di
-   components.css — file ini hanya berisi hal yang spesifik halaman ini.
+   Referensi: 05-tim-kami.md, 07-spesifikasi-teknis.md,
+   01-redesign-concept.md (Tim Kami), 02-redesign-spec.md (Featured Founder
+   Card), 03-implementation-order.md (Step 10)
+
+   Dimigrasikan ke token redesign "Minimalist Modern Curved" — lihat
+   variables.css untuk daftar lengkap token baru. Style reusable (.card,
+   .section-header, .cta-banner, dll) tetap di components.css — file ini
+   hanya berisi hal yang spesifik halaman Tim Kami.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    2. PENGANTAR SINGKAT
    -------------------------------------------------------------------------- */
 .team-intro__lead {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--fs-h3);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   line-height: 1.35;
   margin-bottom: var(--space-2);
 }
 
 /* --------------------------------------------------------------------------
-   3. GRID PROFIL TIM
+   3. GRID PROFIL TIM — Founder Row + Members Row
    -------------------------------------------------------------------------- */
 .card--team {
   position: relative;
@@ -30,7 +35,7 @@
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: var(--radius-md);
+  border-radius: var(--border-radius-md);
   margin-bottom: var(--space-2);
 }
 
@@ -63,51 +68,83 @@
 }
 
 .card--team__social:hover {
-  /* Aksesibilitas: --color-accent murni vs putih hanya 3.99:1 (gagal AA). */
+  /* Aksesibilitas: --color-accent murni vs putih hanya 2.71:1 (gagal AA). */
   background-color: var(--color-accent-hover);
   color: var(--color-surface);
 }
 
-/* Kartu penutup: "didukung oleh 19+ talenta kreatif lainnya" */
-.card--team-more {
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: var(--color-accent-soft);
-  border-style: dashed;
-  min-height: 100%;
-}
-
-.card--team-more__inner {
+/* --------------------------------------------------------------------------
+   Founder row — Raka Pratama sendirian di baris pertama.
+   PENTING: foto founder HANYA sedikit lebih besar (~20-30%) dari foto
+   4 anggota lain, bukan drastis lebih besar — perbedaan utama dicapai
+   lewat POSISI (baris sendiri) dan skala quote (--fs-h3), bukan ukuran
+   foto. Lihat perhitungan lebar di komentar bawah.
+   -------------------------------------------------------------------------- */
+.team-grid__founder-row {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  margin-bottom: var(--space-5);
+}
+
+.card--team--founder {
+  width: 100%;
+  /* Kartu anggota biasa di grid 4-kolom (container 1200px, gap --space-4)
+     punya lebar kira-kira (1200 - 3*32) / 4 ≈ 276px di desktop besar.
+     360px di sini adalah ±30% lebih lebar dari itu — batas atas yang
+     diizinkan, bukan lebih. */
+  max-width: 360px;
+  text-align: center;
   align-items: center;
-  gap: var(--space-1);
 }
 
-.card--team-more__number {
-  font-family: var(--font-display);
-  font-size: var(--fs-h2);
-  font-weight: 600;
-  color: var(--color-accent-hover);
+.card--team--founder .card--team__photo {
+  border-radius: var(--border-radius-xl);
 }
 
-.card--team-more__label {
-  font-family: var(--font-body);
+.card--team--founder .card--team__quote {
+  font-size: var(--fs-h3);
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-text-primary);
+}
+
+.card--team--founder .card--team__position {
+  font-size: var(--fs-body);
+}
+
+.card--team:not(.card--team--founder) .card--team__photo {
+  border-radius: var(--border-radius-md);
+}
+
+/* --------------------------------------------------------------------------
+   Members row — 4 anggota lain, grid standar tanpa hierarki
+   -------------------------------------------------------------------------- */
+.team-grid__members-row {
+  align-items: stretch;
+}
+
+/* --------------------------------------------------------------------------
+   Team note — "didukung oleh 19+ talenta kreatif lainnya"
+   Teks kecil murni informasi, BUKAN elemen visual/card.
+   -------------------------------------------------------------------------- */
+.team-note {
   font-size: var(--fs-small);
-  color: var(--color-ink-muted);
-  max-width: 22ch;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-top: var(--space-3);
 }
 
 /* --------------------------------------------------------------------------
    4. BUDAYA KERJA (TEAM CULTURE)
+   Tetap grid tenang standar (BUKAN asimetris) — fokus halaman sudah
+   dipakai oleh kartu Founder di section sebelumnya.
    -------------------------------------------------------------------------- */
 .team-culture {
   background-color: var(--color-surface);
 }
 
 .team-culture__visual img {
-  border-radius: var(--radius-lg);
+  border-radius: var(--border-radius-xl);
 }
 
 .team-culture__content {
@@ -128,7 +165,7 @@
 .team-culture__list li {
   padding-left: var(--space-3);
   position: relative;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   line-height: 1.6;
 }
 
@@ -144,7 +181,7 @@
 }
 
 .team-culture__list strong {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 /* --------------------------------------------------------------------------
@@ -153,6 +190,10 @@
 @media (max-width: 899px) {
   .team-grid .col-span-4 {
     grid-column: span 12;
+  }
+
+  .card--team--founder {
+    max-width: 100%;
   }
 
   .team-culture .col-span-6 {

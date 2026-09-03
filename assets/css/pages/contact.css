@@ -4,6 +4,14 @@
    Referensi: 06-kontak.md, 07-spesifikasi-teknis.md
    Style reusable (btn, section-header, cta-banner, accordion) tetap di
    components.css — file ini hanya berisi hal yang spesifik halaman ini.
+
+   Dimigrasikan ke token redesign "Minimalist Modern Curved" —
+   lihat variables.css untuk daftar lengkap token baru.
+
+   Prinsip halaman ini: SENGAJA TIDAK memakai titik fokus dramatis — halaman
+   fungsional-transaksional di mana kejelasan mengisi form lebih penting
+   daripada statement visual. Satu-satunya elemen yang boleh sedikit
+   menonjol: tombol WhatsApp (lihat bagian 5).
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -30,46 +38,61 @@
   font-family: var(--font-body);
   font-size: var(--fs-small);
   font-weight: 600;
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 .form-label__optional {
   font-weight: 400;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
 }
 
+/* Field default: radius kecil (sm), border lembut (--color-secondary)
+   BUKAN --color-border tajam — sesuai redesign spec bagian Form Kontak */
 .form-field {
   width: 100%;
   padding: var(--space-2);
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius-sm);
   transition: border-color var(--duration-fast) var(--ease);
 }
 
-.form-field:focus {
-  outline: none;
-  border-color: var(--color-accent);
-}
-
+/* Textarea: radius lebih besar (md) karena field besar */
 textarea.form-field {
+  border-radius: var(--border-radius-md);
   resize: vertical;
   min-height: 120px;
 }
 
+/* Fokus keyboard WAJIB tetap jelas — jangan pernah di-display:none-kan */
+.form-field:focus-visible {
+  outline: 2px solid var(--color-accent-hover);
+  outline-offset: 2px;
+}
+
+/* Fallback :focus polos untuk browser yang belum dukung :focus-visible
+   pada elemen form (mis. beberapa versi Safari lama) */
+.form-field:focus {
+  outline: 2px solid var(--color-accent-hover);
+  outline-offset: 2px;
+  border-color: var(--color-accent-hover);
+}
+
 select.form-field {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235C594F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B6255' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right var(--space-2) center;
   padding-right: var(--space-5);
 }
 
 /* State error — class ditambahkan/dikendalikan via form-validation.js
-   pada .form-field yang gagal validasi (opsional, disiapkan sebagai hook) */
+   pada .form-field yang gagal validasi (opsional, disiapkan sebagai hook).
+   CATATAN: form-validation.js saat ini kosong/belum berfungsi — di luar
+   scope redesign visual ini, hook CSS tetap disiapkan apa adanya. */
 .form-field.is-invalid {
   border-color: var(--color-danger);
 }
@@ -89,8 +112,8 @@ select.form-field {
 .form-success {
   padding: var(--space-2) var(--space-3);
   background-color: var(--color-accent-soft);
-  color: var(--color-ink);
-  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  border-radius: var(--border-radius-md);
   font-size: var(--fs-small);
   font-weight: 600;
 }
@@ -99,14 +122,14 @@ select.form-field {
 .contact-info {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--border-radius-lg);
   padding: var(--space-4);
 }
 
 .contact-info__title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--fs-h3);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   margin-bottom: var(--space-3);
 }
 
@@ -131,7 +154,7 @@ select.form-field {
   flex-shrink: 0;
   width: 36px;
   height: 36px;
-  border-radius: var(--radius-md);
+  border-radius: var(--border-radius-md);
   background-color: var(--color-accent-soft);
   color: var(--color-accent-hover);
 }
@@ -146,12 +169,12 @@ select.form-field {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   margin-bottom: 0.15rem;
 }
 
 .contact-info__value {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   font-size: var(--fs-body);
 }
 
@@ -160,18 +183,24 @@ select.form-field {
   padding-top: var(--space-3);
   border-top: 1px solid var(--color-border);
   font-size: var(--fs-small);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
 }
 
 .contact-info__hours strong {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 /* --------------------------------------------------------------------------
    4. PETA LOKASI
+   Radius WAJIB diterapkan pada elemen WRAPPER (.contact-map__frame),
+   BUKAN pada <iframe> langsung — border-radius tidak konsisten dirender
+   lintas browser tanpa wrapper overflow:hidden. Wrapper ini SUDAH ada di
+   markup existing kontak.html, jadi cukup migrasi token, tidak perlu
+   menambah div baru (mis. .map-embed).
+   src iframe TIDAK diubah.
    -------------------------------------------------------------------------- */
 .contact-map__frame {
-  border-radius: var(--radius-lg);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
   border: 1px solid var(--color-border);
 }
@@ -182,6 +211,9 @@ select.form-field {
 
 /* --------------------------------------------------------------------------
    5. TOMBOL KONTAK CEPAT (QUICK ACTIONS)
+   Hanya tombol WhatsApp yang boleh menonjol (solid, sedikit lebih besar).
+   Email & Instagram tetap .btn--secondary standar dari components.css,
+   padding default (--space-2 --space-3), TIDAK dibesarkan.
    -------------------------------------------------------------------------- */
 .quick-actions__grid {
   display: flex;
@@ -195,8 +227,27 @@ select.form-field {
   max-width: 320px;
 }
 
+/* Satu-satunya elemen menonjol di halaman ini — solid accent-hover,
+   radius lebih besar (md), padding lebih lega dari tombol secondary lain */
+.quick-actions__btn--whatsapp {
+  background-color: var(--color-accent-hover);
+  color: var(--color-surface);
+  border-color: var(--color-accent-hover);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-4) var(--space-5);
+}
+
+.quick-actions__btn--whatsapp:hover {
+  background-color: var(--color-accent-hover-dark);
+  border-color: var(--color-accent-hover-dark);
+  transform: translateY(-2px);
+}
+
 /* --------------------------------------------------------------------------
    6. FAQ — memakai .accordion dari components.css, tanpa icon/desc
+   Base style (.accordion__item, border[open], radius, ikon "+") WAJIB
+   tetap di components.css sebagai shared component — TIDAK diduplikasi
+   di sini (lihat riwayat bug 7.3, DOKUMENTASI-TEKNIS.md).
    -------------------------------------------------------------------------- */
 .contact-faq .accordion__title-group {
   gap: 0;

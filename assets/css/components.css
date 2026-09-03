@@ -1,12 +1,22 @@
 /* ==========================================================================
    COMPONENTS.CSS
-   Komponen reusable: Navbar, Footer, Button, Card, Section Header
+   Komponen reusable: Navbar, Footer, Button, Card, Section Header,
+   Page Header, CTA Banner, Stat Counter, Testimonial, Accordion,
+   Scroll-Reveal State
    Referensi: 07-spesifikasi-teknis.md — bagian 3.2, 3.3, 4
    Metodologi: BEM (Block Element Modifier)
+
+   Dimigrasikan ke token redesign "Minimalist Modern Curved"
+   (filosofi "Diam tapi Berbicara") — lihat variables.css untuk daftar
+   lengkap token baru. Tidak ada lagi referensi ke token lama sistem
+   terracotta (--color-bg, --color-ink, --color-ink-muted, --radius-sm/md/lg,
+   --font-display, --color-ink-rgb, --color-bg-rgb) di file ini.
    ========================================================================== */
 
 /* ==========================================================================
    1. NAVBAR
+   Struktur, class BEM, dan perilaku responsif TIDAK berubah dari sistem
+   lama — hanya token warna/border yang dimigrasikan.
    ========================================================================== */
 .navbar {
   position: sticky;
@@ -23,7 +33,7 @@
 /* State: navbar berubah style saat discroll (dikendalikan main.js) */
 .navbar--scrolled {
   border-bottom-color: var(--color-border);
-  box-shadow: 0 2px 12px rgba(var(--color-ink-rgb), 0.06);
+  box-shadow: 0 2px 12px rgba(var(--color-primary-rgb), 0.06);
 }
 
 .navbar__inner {
@@ -68,7 +78,7 @@
   display: block;
   width: 24px;
   height: 2px;
-  background-color: var(--color-ink);
+  background-color: var(--color-text-primary);
   border-radius: 2px;
   transition: transform var(--duration-base) var(--ease),
     opacity var(--duration-base) var(--ease);
@@ -99,7 +109,7 @@
   font-family: var(--font-body);
   font-size: var(--fs-small);
   font-weight: 600;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   text-decoration: none;
   padding-block: var(--space-1);
   transition: color var(--duration-fast) var(--ease);
@@ -107,11 +117,11 @@
 
 .navbar__link:hover,
 .navbar__link:focus-visible {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 .navbar__link--active {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 .navbar__link--active::after {
@@ -150,7 +160,7 @@
     gap: 0;
     background-color: var(--color-surface);
     border-bottom: 1px solid var(--color-border);
-    box-shadow: 0 8px 16px rgba(var(--color-ink-rgb), 0.08);
+    box-shadow: 0 8px 16px rgba(var(--color-primary-rgb), 0.08);
 
     /* Tersembunyi secara default di mobile */
     max-height: 0;
@@ -203,16 +213,18 @@
 
 /* ==========================================================================
    2. FOOTER
+   Struktur, grid 12-kolom, dan perilaku responsif TIDAK berubah — hanya
+   token warna dimigrasikan ke sistem baru.
    ========================================================================== */
 .footer {
-  background-color: var(--color-ink);
-  color: var(--color-bg);
+  background-color: var(--color-primary);
+  color: var(--color-background);
   padding-block: var(--space-6) var(--space-3);
 }
 
 .footer__grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--space-5);
   padding-bottom: var(--space-5);
 }
@@ -237,7 +249,7 @@
 }
 
 .footer__brand p {
-  color: rgba(var(--color-bg-rgb), 0.65);
+  color: rgba(var(--color-background-rgb), 0.65);
   font-size: var(--fs-small);
   max-width: 32ch;
 }
@@ -256,7 +268,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--color-bg);
+  color: var(--color-background);
   margin-bottom: var(--space-2);
 }
 
@@ -264,7 +276,7 @@
 .footer__contact a,
 .footer__social a {
   display: block;
-  color: rgba(var(--color-bg-rgb), 0.65);
+  color: rgba(var(--color-background-rgb), 0.65);
   text-decoration: none;
   font-size: var(--fs-small);
   padding-block: 0.35rem;
@@ -274,24 +286,24 @@
 .footer__links a:hover,
 .footer__contact a:hover,
 .footer__social a:hover {
-  color: var(--color-bg);
+  color: var(--color-background);
 }
 
 .footer__contact p {
-  color: rgba(var(--color-bg-rgb), 0.65);
+  color: rgba(var(--color-background-rgb), 0.65);
   font-size: var(--fs-small);
   margin: 0;
   padding-block: 0.35rem;
 }
 
 .footer__bottom {
-  border-top: 1px solid rgba(var(--color-bg-rgb), 0.15);
+  border-top: 1px solid rgba(var(--color-background-rgb), 0.15);
   padding-top: var(--space-3);
 }
 
 .footer__bottom p {
   font-size: var(--fs-small);
-  color: rgba(var(--color-bg-rgb), 0.5);
+  color: rgba(var(--color-background-rgb), 0.5);
   margin: 0;
   text-align: center;
 }
@@ -328,8 +340,8 @@
 
 /* ==========================================================================
    3. BUTTON
-   Baseline disalin dari 07-spesifikasi-teknis.md bagian 4 (tidak diubah
-   struktur class-nya), ditambah state focus-visible untuk aksesibilitas.
+   Redesign: radius naik ke --border-radius-md (24px, dari 8px lama),
+   transisi utama pakai --transition-default (450ms, easing lembut).
    ========================================================================== */
 .btn {
   display: inline-flex;
@@ -337,26 +349,26 @@
   justify-content: center;
   gap: var(--space-1);
   padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-md);
+  border-radius: var(--border-radius-md);
   font-family: var(--font-body);
   font-weight: 600;
   font-size: var(--fs-body);
   text-decoration: none;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: background-color var(--duration-base) var(--ease),
-    transform var(--duration-fast) var(--ease);
+  transition: background-color var(--transition-default),
+    transform var(--transition-default);
 }
 
 .btn:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-accent-hover);
   outline-offset: 2px;
 }
 
 .btn--primary {
-  /* Aksesibilitas: --color-accent murni vs teks putih hanya 3.99:1 (gagal
+  /* Aksesibilitas: --color-accent murni vs teks putih hanya 2.71:1 (gagal
      WCAG AA 4.5:1 untuk teks normal). --color-accent-hover dipakai sebagai
-     warna default agar kontras teks putih lolos AA (5.27:1). */
+     warna default agar kontras teks putih lolos AA (5.68:1). */
   background-color: var(--color-accent-hover);
   color: var(--color-surface);
 }
@@ -368,7 +380,7 @@
 
 .btn--secondary {
   background-color: transparent;
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   border-color: var(--color-border);
 }
 
@@ -379,12 +391,12 @@
 /* Varian untuk tombol di atas latar gelap (mis. footer/hero gelap) */
 .btn--secondary-inverse {
   background-color: transparent;
-  color: var(--color-bg);
-  border-color: rgba(var(--color-bg-rgb), 0.3);
+  color: var(--color-background);
+  border-color: rgba(var(--color-background-rgb), 0.3);
 }
 
 .btn--secondary-inverse:hover {
-  background-color: rgba(var(--color-bg-rgb), 0.08);
+  background-color: rgba(var(--color-background-rgb), 0.08);
 }
 
 /* ==========================================================================
@@ -413,39 +425,42 @@
 }
 
 .section-header__title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--fs-h2);
   line-height: 1.15;
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   margin-bottom: var(--space-2);
 }
 
 .section-header__desc {
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   line-height: 1.6;
 }
 
 /* ==========================================================================
    5. CARD (base)
    Siap dipakai turunan: .card--service, .card--team, .card--portfolio
+   Redesign: radius naik ke --border-radius-md, shadow via --shadow-sm/md,
+   transisi via --transition-default.
    ========================================================================== */
 .card {
   display: flex;
   flex-direction: column;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--border-radius-md);
   padding: var(--space-4);
-  transition: transform var(--duration-base) var(--ease),
-    box-shadow var(--duration-base) var(--ease),
-    border-color var(--duration-base) var(--ease);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-default),
+    box-shadow var(--transition-default),
+    border-color var(--transition-default);
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(var(--color-ink-rgb), 0.08);
+  box-shadow: var(--shadow-md);
   border-color: var(--color-border);
 }
 
@@ -455,7 +470,7 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  border-radius: var(--radius-md);
+  border-radius: var(--border-radius-md);
   background-color: var(--color-accent-soft);
   color: var(--color-accent-hover);
   margin-bottom: var(--space-2);
@@ -467,16 +482,16 @@
 }
 
 .card__title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--fs-h3);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   margin-bottom: var(--space-1);
 }
 
 .card__desc {
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   line-height: 1.6;
   flex-grow: 1;
 }
@@ -489,7 +504,7 @@
   font-family: var(--font-body);
   font-weight: 600;
   font-size: var(--fs-small);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   text-decoration: none;
 }
 
@@ -501,6 +516,10 @@
    6. PAGE HEADER
    Dipakai di semua halaman selain Beranda (Tentang, Layanan, Portofolio,
    Tim, Kontak) — breadcrumb + judul + sub-judul opsional.
+
+   Redesign: .page-header__title naik skala — lebih besar dari --fs-h1 lama,
+   tapi tetap di bawah --font-size-display Hero. Halaman Layanan meng-override
+   skala ini lagi (sedikit lebih besar) di pages/services.css.
    ========================================================================== */
 .page-header {
   padding-top: var(--space-5);
@@ -512,12 +531,12 @@
   align-items: center;
   gap: var(--space-1);
   font-size: var(--fs-small);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   margin-bottom: var(--space-2);
 }
 
 .breadcrumb a {
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
 }
 
 .breadcrumb a:hover {
@@ -525,18 +544,19 @@
 }
 
 .breadcrumb [aria-current="page"] {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   font-weight: 600;
 }
 
 .page-header__title {
   margin-bottom: var(--space-1);
+  font-size: clamp(2.25rem, 5.5vw, 4.75rem);
 }
 
 .page-header__subtitle {
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   max-width: 60ch;
 }
 
@@ -567,7 +587,7 @@
 }
 
 .cta-banner__title {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   max-width: 50ch;
 }
 
@@ -576,7 +596,13 @@
    Dipakai di Beranda, Tentang Kami, dan Portofolio & Klien.
    Base class netral (tanpa warna teks hardcode ke satu konteks latar);
    gunakan modifier .stat-counter--inverse saat berada di atas latar gelap
-   (mis. section .stats dengan --color-ink sebagai background).
+   (mis. section .stats/.trust-bar dengan background: var(--color-primary)).
+
+   Redesign: modifier lama .stat-counter--accent (mewarnai SEMUA angka
+   dalam grid sekaligus) DIHAPUS TOTAL — prinsip "warna sebagai tanda
+   baca" mensyaratkan hanya SATU angka boleh menonjol per grid statistik.
+   Diganti .stat-counter--highlight, dipasang manual pada tepat satu
+   instance per halaman (lihat markup index.html / tentang.html).
    ========================================================================== */
 .stat-counter {
   display: flex;
@@ -586,10 +612,10 @@
 }
 
 .stat-counter__number {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--fs-h2);
   font-weight: 600;
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   line-height: 1;
   white-space: nowrap;
 }
@@ -597,46 +623,57 @@
 .stat-counter__label {
   font-family: var(--font-body);
   font-size: var(--fs-small);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 /* Modifier untuk section berlatar gelap (mis. .stats / .trust-bar dengan
-   background: var(--color-ink)) */
+   background: var(--color-primary)) */
 .stat-counter--inverse .stat-counter__number {
   font-size: var(--fs-h1);
-  color: var(--color-bg);
+  color: var(--color-background);
 }
 
 .stat-counter--inverse .stat-counter__label {
-  color: rgba(var(--color-bg-rgb), 0.65);
+  color: rgba(var(--color-background-rgb), 0.65);
 }
 
-/* Sub-modifier: angka pakai warna aksen (dipakai di Trust Bar Beranda) */
-.stat-counter--inverse.stat-counter--accent .stat-counter__number {
+/* Modifier BARU: hanya SATU instance per grid statistik boleh memakai ini.
+   Menggantikan .stat-counter--accent lama (yang mewarnai semua angka
+   sekaligus) — lihat catatan di atas. Kompatibel dengan .stat-counter--inverse. */
+.stat-counter--highlight .stat-counter__number {
   color: var(--color-accent-hover);
 }
 
 /* ==========================================================================
    9. TESTIMONIAL
    Dipakai di Beranda dan Portofolio & Klien.
+   Redesign: radius naik ke --border-radius-md. Modifier baru
+   .testimonial--featured (opsional) diberi pada testimoni pertama di
+   grid 2-kartu untuk asimetri ringan — col-span override tinggal di
+   pages/home.css & pages/portfolio.css.
    ========================================================================== */
 .testimonial {
-  background-color: var(--color-bg);
+  background-color: var(--color-background);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--border-radius-md);
   padding: var(--space-4);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
 }
 
+/* .testimonial--featured — modifier struktural kosong di sini secara
+   sengaja: hanya menjadi hook selector untuk override grid-column di
+   CSS halaman spesifik (home.css / portfolio.css), tidak mengubah
+   tampilan card itu sendiri. */
+
 .testimonial__quote {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--fs-body);
   font-style: italic;
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   line-height: 1.6;
 }
 
@@ -659,7 +696,7 @@
   font-style: normal;
   font-weight: 700;
   font-size: var(--fs-small);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   margin: 0;
 }
 
@@ -668,19 +705,29 @@
   font-family: var(--font-body);
   font-style: normal;
   font-size: var(--fs-small);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   margin: 0;
 }
 
 /* ==========================================================================
    10. ACCORDION
    Dipakai di halaman Layanan (daftar 6 layanan) dan Kontak (FAQ).
-   Base style shared di sini; override tampilan khusus per-halaman
-   (mis. grid 2-kolom desktop untuk Layanan) tetap di pages/services.css.
+   Base style shared WAJIB tetap di sini — JANGAN diduplikasi di
+   pages/*.css manapun (riwayat bug: FAQ Kontak tampil polos karena
+   .accordion cuma didefinisikan lokal di services.css). Override
+   tampilan khusus per-halaman (mis. grid 2-kolom desktop untuk
+   Layanan) tetap tinggal di pages/services.css.
 
    CATATAN IMPLEMENTASI: pakai native HTML5 <details>/<summary>, bukan
    custom JS — perilaku buka/tutup sepenuhnya ditangani browser secara
    native, tidak butuh file JS accordion terpisah.
+
+   Redesign: radius naik ke --border-radius-md. Border saat [open] pakai
+   --color-accent MURNI dengan opacity lembut (bukan solid tajam) —
+   elemen non-teks, sesuai aturan kontras yang diwariskan dari sistem
+   lama (accent murni untuk non-teks, accent-hover untuk teks). Ikon "+"
+   WAJIB tetap --font-body (Inter), TIDAK PERNAH --font-heading (Fraunces)
+   — riwayat bug 7.2 tidak boleh terulang.
    ========================================================================== */
 .accordion {
   display: flex;
@@ -691,12 +738,17 @@
 .accordion__item {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--border-radius-md);
   overflow: hidden;
+  transition: border-color var(--transition-default);
 }
 
 .accordion__item[open] {
-  border-color: var(--color-accent);
+  /* Fallback dulu untuk browser tanpa dukungan color-mix():
+     turunan manual dari --color-accent #B57A5A pada opacity 60% */
+  border-color: rgba(181, 122, 90, 0.6);
+  /* Browser modern akan override baris di atas */
+  border-color: color-mix(in srgb, var(--color-accent) 60%, transparent);
 }
 
 .accordion__trigger {
@@ -721,12 +773,14 @@
   content: "+";
   margin-left: auto;
   font-family: var(--font-body);
+  /* WAJIB Inter, bukan Fraunces — karakter simbol di font display serif
+     tampil miring/asimetris (riwayat bug 7.2, jangan diulang). */
   font-weight: 300;
   font-size: 1.75rem;
   line-height: 1;
   color: var(--color-accent-hover);
   flex-shrink: 0;
-  transition: transform var(--duration-base) var(--ease);
+  transition: transform var(--transition-default);
 }
 
 .accordion__item[open] .accordion__trigger::after {
@@ -755,15 +809,15 @@
 }
 
 .accordion__title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--fs-h3);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 .accordion__desc {
   font-family: var(--font-body);
   font-size: var(--fs-small);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
 }
 
 .accordion__content {
@@ -771,7 +825,7 @@
 }
 
 .accordion__content p {
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
 }
 
 .accordion__label {
@@ -780,7 +834,7 @@
   font-size: var(--fs-small);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   margin-bottom: var(--space-1);
 }
 
@@ -795,7 +849,7 @@
 .accordion__list li {
   position: relative;
   padding-left: var(--space-3);
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
 }
 
 .accordion__list li::before {
@@ -828,12 +882,18 @@
    11. SCROLL-REVEAL STATE
    Dipakai oleh animations.js (IntersectionObserver) di halaman yang
    men-load animations.js: Beranda, Tentang Kami, Portofolio & Klien.
+
+   Redesign: transisi WAJIB pakai --transition-default (450ms, easing
+   cubic-bezier(0.16, 1, 0.3, 1)) — BUKAN --duration-base/--ease lama
+   (300ms) — sesuai prinsip "gerakan menegaskan, tidak menghibur".
+   Tetap dibungkus prefers-reduced-motion agar opacity/transform
+   dinonaktifkan untuk pengguna yang sensitif terhadap gerakan.
    ========================================================================== */
 [data-reveal] {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity var(--duration-base) var(--ease),
-    transform var(--duration-base) var(--ease);
+  transition: opacity var(--transition-default),
+    transform var(--transition-default);
 }
 
 [data-reveal].is-visible {
@@ -846,6 +906,5 @@
     opacity: 1;
     transform: none;
     transition: none;
-
   }
 }
